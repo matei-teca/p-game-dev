@@ -9,18 +9,21 @@ function App() {
   const [pokemonColection, setPokemonColection] = useState(null);
   useEffect(() => {
     let arr = [];
+    let loadigbar = document.querySelector(".loadingBar");
     for (let i = 1; i <= 528; i++) {
       fetch(`https://pokeapi.co/api/v2/evolution-chain/${i}/`)
         .then((res) => res.json())
         .then((data) => {
+          loadigbar.innerText = `${i}/520`;
           arr.push(data.chain.species.name);
         })
         .catch((e) => {});
     }
-    setTimeout(setPokemonColection, 2000, arr);
-  }, []);
+    setTimeout(() => {
+      console.log(arr);
+      setPokemonColection(arr);
+    }, 4000);
 
-  useEffect(() => {
     fetch("https://pokeapi.co/api/v2/location")
       .then((res) => res.json())
       .then((data) => setLocations(data));
@@ -50,21 +53,30 @@ function App() {
 
   return (
     <div className="App">
-      {pokemon ? (
-        <Pokemon pokemon={pokemon} onClick={handleBackClick} />
+      {pokemonColection ? (
+        pokemon ? (
+          <Pokemon pokemon={pokemon} onClick={handleBackClick} />
+        ) : (
+          <>
+            {locations &&
+              locations.results.map((location, index) => (
+                <Locations
+                  key={index}
+                  name={location.name}
+                  id={index}
+                  onClick={handleLocationClick}
+                />
+              ))}
+          </>
+        )
       ) : (
-        <>
-          <p>{console.log(pokemonColection)}</p>
-          {locations &&
-            locations.results.map((location, index) => (
-              <Locations
-                key={index}
-                name={location.name}
-                id={index}
-                onClick={handleLocationClick}
-              />
-            ))}
-        </>
+        <div>
+          <img
+            src={"https://media.tenor.com/fSsxftCb8w0AAAAi/pikachu-running.gif"}
+          />
+          <p className="loadingMessage">The pokemons are beeing fetched</p>
+          <p className="loadingBar">"0/520"</p>
+        </div>
       )}
     </div>
   );
