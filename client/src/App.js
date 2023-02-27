@@ -2,20 +2,25 @@ import "./App.css";
 import React, { useEffect, useState } from "react";
 import Locations from "./components/Locations";
 import Pokemon from "./components/Pokemon";
-
+let x = 0;
 function App() {
   const [locations, setLocations] = useState(null);
   const [pokemon, setPokemon] = useState(null);
   const [pokemonColection, setPokemonColection] = useState(null);
+
   useEffect(() => {
     let arr = [];
     let loadigbar = document.querySelector(".loadingBar");
+    let progressBar = document.querySelector("progress");
     for (let i = 1; i <= 528; i++) {
       fetch(`https://pokeapi.co/api/v2/evolution-chain/${i}/`)
         .then((res) => res.json())
         .then((data) => {
-          loadigbar.innerText = `${i}/520`;
+          console.log(x);
+          loadigbar.innerText = `${Math.floor(i / 2) + x}/520`;
+          progressBar.value = Math.floor(i / 2) + x;
           arr.push(data.chain.species.name);
+          if (i === 528) x = 256;
         })
         .catch((e) => {});
     }
@@ -76,6 +81,9 @@ function App() {
           />
           <p className="loadingMessage">The pokemons are beeing fetched</p>
           <p className="loadingBar">"0/520"</p>
+          <progress id="file" max="520" value="0">
+            {" "}
+          </progress>
         </div>
       )}
     </div>
