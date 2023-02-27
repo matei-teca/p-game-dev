@@ -6,6 +6,19 @@ import Pokemon from "./components/Pokemon";
 function App() {
   const [locations, setLocations] = useState(null);
   const [pokemon, setPokemon] = useState(null);
+  const [pokemonColection, setPokemonColection] = useState(null);
+  useEffect(() => {
+    let arr = [];
+    for (let i = 1; i <= 528; i++) {
+      fetch(`https://pokeapi.co/api/v2/evolution-chain/${i}/`)
+        .then((res) => res.json())
+        .then((data) => {
+          arr.push(data.chain.species.name);
+        })
+        .catch((e) => {});
+    }
+    setTimeout(setPokemonColection, 2000, arr);
+  }, []);
 
   useEffect(() => {
     fetch("https://pokeapi.co/api/v2/location")
@@ -22,7 +35,6 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         let pokemonArray = data.pokemon_encounters;
-        console.log(pokemonArray)
         pokemonArray.length === 0
           ? setPokemon("No pokemons found")
           : setPokemon(
@@ -41,15 +53,18 @@ function App() {
       {pokemon ? (
         <Pokemon pokemon={pokemon} onClick={handleBackClick} />
       ) : (
-        locations &&
-        locations.results.map((location, index) => (
-          <Locations
-            key={index}
-            name={location.name}
-            id={index}
-            onClick={handleLocationClick}
-          />
-        ))
+        <>
+          <p>{console.log(pokemonColection)}</p>
+          {locations &&
+            locations.results.map((location, index) => (
+              <Locations
+                key={index}
+                name={location.name}
+                id={index}
+                onClick={handleLocationClick}
+              />
+            ))}
+        </>
       )}
     </div>
   );
