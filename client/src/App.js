@@ -65,8 +65,10 @@ function App() {
           <Pokemon pokemon={pokemon} onClick={handleBackClick} />
         ) : (
           <>
-            <PokemonsColection pokemonColection={pokemonColection} />
-            {/* {locations &&
+            {/* <PokemonsColection pokemonColection={pokemonColection} /> */}
+
+            <div className="locations--container">
+            {locations &&
               locations.results.map((location, index) => (
                 <Locations
                   key={index}
@@ -74,17 +76,18 @@ function App() {
                   id={index}
                   onClick={handleLocationClick}
                 />
-              ))} */}
+              ))}
+            </div>
           </>
         )
       ) : (
         <div>
-          <img
+          {/* <img
             src={"https://media.tenor.com/fSsxftCb8w0AAAAi/pikachu-running.gif"}
           />
           <p className="loadingMessage">The pokemons are beeing fetched</p>
           <p className="loadingBar">"0/520"</p>
-          <progress id="file" max="520" value="0"></progress>
+          <progress id="file" max="520" value="0"></progress> */}
         </div>
       )}
     </div>
