@@ -1,8 +1,9 @@
 .App {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  /* background-color: yellow; */
 }
 
 .pokemon_encounter-stats {
@@ -52,6 +53,18 @@ body {
   transition: 1s;
 }
 
+.locations--container{
+  background-color: blue;
+  width: 90vw;
+  height: 90vh;
+  background-image: url("../images/world-map\ \(1\).jpg");
+  background-size: 100%;
+  border-radius: 30%;
+  image-rendering: optimizeQuality;
+
+  /* background-repeat: no-repeat; */
+}
+
 .location--item{
   background-color: red;
   width: 10%;
@@ -64,8 +77,33 @@ body {
   margin-block: 10px
 }
 
-/* .locations--container{
-  
-} */
+.location--item-small{
+  /* background-color: red; */
+  background-image: url('https://cdn.iconscout.com/icon/premium/png-256-thumb/pokeball-location-674567.png');
+  background-size: contain;
+  width: 100px;
+  height: 100px;
+  padding: 10px;
+  overflow: hidden;
+  margin: 30px;
+  border-radius: 50%;
+  color: rgba(240, 248, 255, 0);
+
+}
+
+.location--item-small:hover{
+  background-color: black;
+  background-image: none;
+  color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  text-align: center;
+  cursor: pointer;
+
+}
+
+
 
 
