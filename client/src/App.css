@@ -1,10 +1,10 @@
 .pokemon_encounter-stats {
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: right;
+  background-position-y:-30px ;
   background-color: aqua;
   width: 35vw;
-  height: 45vh;
+  height: 70vh;
   image-rendering: pixelated;
   padding-left: 2%;
 }
