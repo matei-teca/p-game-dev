@@ -5,6 +5,7 @@ import Pokemon from "./components/Pokemon";
 import "bootstrap/dist/css/bootstrap.css";
 import PokemonsColection from "./components/PokemonsColection";
 
+let usersPokemons = [];
 let x = 0;
 function App() {
   const [locations, setLocations] = useState(null);
@@ -58,6 +59,17 @@ function App() {
     setPokemon(null);
   };
 
+  const handleSelectClick = (e) => {
+    if (usersPokemons.length < 3 && !usersPokemons.includes(e.target.id)) {
+      usersPokemons.push(e.target.id);
+      e.target.parentElement.classList.add("cardSelected");
+    } else if (usersPokemons.indexOf(e.target.id) != -1) {
+      e.target.parentElement.classList.remove("cardSelected");
+      usersPokemons.splice(usersPokemons.indexOf(e.target.id), 1);
+    }
+    console.log(usersPokemons);
+  };
+
   return (
     <div className="App">
       {pokemonColection ? (
@@ -65,7 +77,10 @@ function App() {
           <Pokemon pokemon={pokemon} onClick={handleBackClick} />
         ) : (
           <>
-            <PokemonsColection pokemonColection={pokemonColection} />
+            <PokemonsColection
+              pokemonColection={pokemonColection}
+              onClick={handleSelectClick}
+            />
             {/* {locations &&
               locations.results.map((location, index) => (
                 <Locations

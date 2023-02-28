@@ -6,7 +6,7 @@ export default function CarouselColumn(props) {
     <div className="d-inline card--container">
       {props.column.map((pokemonName, index) => (
         <>
-          <PokemonCard name={pokemonName} key={index} />
+          <PokemonCard name={pokemonName} key={index} onClick={props.onClick} />
         </>
       ))}
     </div>

@@ -43,7 +43,11 @@ export default function PokemonsColection(props) {
                   columnsArr.push(slide.slice(i, i + 3));
                 }
                 return columnsArr?.map((column, index) => (
-                  <CarouselColumn key={index} column={column} />
+                  <CarouselColumn
+                    key={index}
+                    column={column}
+                    onClick={props.onClick}
+                  />
                 ));
               })()}
             </div>
