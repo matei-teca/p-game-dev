@@ -78,7 +78,7 @@ body {
 }
 
 .location--item-small{
-  /* background-color: red; */
+  background-color: rgba(0, 0, 0, 0);
   background-image: url('https://cdn.iconscout.com/icon/premium/png-256-thumb/pokeball-location-674567.png');
   background-size: contain;
   width: 100px;
@@ -101,6 +101,8 @@ body {
   padding-top: 20px;
   text-align: center;
   cursor: pointer;
+  transition: 1s;
+  box-shadow: 0 0 20px 0 yellow, 0 0 40px 0 yellow, 0 0 60px 0 yellow;
 
 }
 
