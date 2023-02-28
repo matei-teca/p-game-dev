@@ -35,7 +35,6 @@ export default function PokemonsColection(props) {
                 width: "110vw",
                 height: "90vh",
                 paddingInline: 150,
-                // opacity: 0.1
               }}
             >
               {(() => {

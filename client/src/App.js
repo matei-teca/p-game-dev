@@ -31,11 +31,13 @@ function App() {
     setTimeout(() => {
       setPokemonColection(arr);
     }, 3000);
+  }, []);
 
+  const loadMap = () => {
     fetch("https://pokeapi.co/api/v2/location")
       .then((res) => res.json())
       .then((data) => setLocations(data));
-  }, []);
+  };
 
   const handleLocationClick = (e) => {
     fetch(
@@ -73,24 +75,26 @@ function App() {
   return (
     <div className="App">
       {pokemonColection ? (
-        pokemon ? (
-          <Pokemon pokemon={pokemon} onClick={handleBackClick} />
+        locations ? (
+          pokemon ? (
+            <Pokemon pokemon={pokemon} onClick={handleBackClick} />
+          ) : (
+            locations.results.map((location, index) => (
+              <Locations
+                key={index}
+                name={location.name}
+                id={index}
+                onClick={handleLocationClick}
+              />
+            ))
+          )
         ) : (
           <>
-            <button>Go to Map</button>
+            <button onClick={loadMap}>Go to Map</button>
             <PokemonsColection
               pokemonColection={pokemonColection}
               onClick={handleSelectClick}
             />
-            {/* {locations &&
-              locations.results.map((location, index) => (
-                <Locations
-                  key={index}
-                  name={location.name}
-                  id={index}
-                  onClick={handleLocationClick}
-                />
-              ))} */}
           </>
         )
       ) : (
