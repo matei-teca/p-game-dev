@@ -9,46 +9,44 @@
   padding-left: 2%;
 }
 
-h3 {
-  margin-block: 9%;
+h5 {
+  margin-block: 2% !important;
 }
 .card {
-  background-size: contain;
+  background-size: 65%;
   background-repeat: no-repeat;
   background-position: right;
   background-color: rgb(244, 240, 5) !important;
   image-rendering: pixelated;
   padding-left: 2%;
+  height: 33% !important;
+  transition: 0.2s;
+  border: 0px solid black !important;
+  margin-top: 5%;
+}
+.cardSelected{
+  background-color: rgb(11, 172, 43) !important;
+  border: 7px solid black !important;
+
+}
+
+.card:hover {
+  border: 7px solid black !important;
 }
 body {
   overflow-x: hidden;
 }
 .card--container {
-  background-color: blue;
+  /* background-color: blue; */
+  margin-bottom: 4%;
   margin-inline: 0.5%;
   width: 23%;
-  height: 500px;
+  height: 75%;
   transition: 1s;
 }
 
-.card--container:hover {
+/* .card--container:hover {
   width: 24%;
   height: 80%;
   transition: 1s;
-}
-
-/* .carousel-inner {
-  width: 60vw;
-  height: 60vh;
-  background-color: rgb(238, 255, 0);
-  overflow: auto !important;
-}
-.carousel-item {
-  background-color: red;
-  display: flex !important;
-  justify-content: center;
-  align-items: center;
-  width: 110vw !important;
-  height: 90vh;
-  padding-inline: 150;
 } */

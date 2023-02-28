@@ -2,8 +2,6 @@ import "bootstrap/dist/css/bootstrap.css";
 import Carousel from "react-bootstrap/Carousel";
 import CarouselColumn from "./CarouselColumn";
 
-import "../App.css";
-
 export default function PokemonsColection(props) {
   let slides = [];
   for (let i = 0; i < 516; i += 12) {
