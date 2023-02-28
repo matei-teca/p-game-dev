@@ -6,9 +6,49 @@
   width: 35vw;
   height: 45vh;
   image-rendering: pixelated;
-  padding-left: 2%
+  padding-left: 2%;
 }
 
-h3{
-  margin-block: 9%
+h3 {
+  margin-block: 9%;
 }
+.card {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right;
+  background-color: rgb(244, 240, 5) !important;
+  image-rendering: pixelated;
+  padding-left: 2%;
+}
+body {
+  overflow-x: hidden;
+}
+.card--container {
+  background-color: blue;
+  margin-inline: 0.5%;
+  width: 23%;
+  height: 500px;
+  transition: 1s;
+}
+
+.card--container:hover {
+  width: 24%;
+  height: 80%;
+  transition: 1s;
+}
+
+/* .carousel-inner {
+  width: 60vw;
+  height: 60vh;
+  background-color: rgb(238, 255, 0);
+  overflow: auto !important;
+}
+.carousel-item {
+  background-color: red;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  width: 110vw !important;
+  height: 90vh;
+  padding-inline: 150;
+} */

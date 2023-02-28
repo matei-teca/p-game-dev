@@ -2,6 +2,9 @@ import "./App.css";
 import React, { useEffect, useState } from "react";
 import Locations from "./components/Locations";
 import Pokemon from "./components/Pokemon";
+import "bootstrap/dist/css/bootstrap.css";
+import PokemonsColection from "./components/PokemonsColection";
+
 let x = 0;
 function App() {
   const [locations, setLocations] = useState(null);
@@ -15,7 +18,6 @@ function App() {
       fetch(`https://pokeapi.co/api/v2/evolution-chain/${i}/`)
         .then((res) => res.json())
         .then((data) => {
-          console.log(x);
           loadigbar.innerText = `${Math.floor(i / 2) + x}/520`;
           progressBar.value = Math.floor(i / 2) + x;
           arr.push(data.chain.species.name);
@@ -63,7 +65,8 @@ function App() {
           <Pokemon pokemon={pokemon} onClick={handleBackClick} />
         ) : (
           <>
-            {locations &&
+            <PokemonsColection pokemonColection={pokemonColection} />
+            {/* {locations &&
               locations.results.map((location, index) => (
                 <Locations
                   key={index}
@@ -71,7 +74,7 @@ function App() {
                   id={index}
                   onClick={handleLocationClick}
                 />
-              ))}
+              ))} */}
           </>
         )
       ) : (
