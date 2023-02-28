@@ -4,6 +4,7 @@ import Locations from "./components/Locations";
 import Pokemon from "./components/Pokemon";
 import "bootstrap/dist/css/bootstrap.css";
 import PokemonsColection from "./components/PokemonsColection";
+import StarterPage from "./components/StarterPage";
 
 let usersPokemons = [];
 let x = 0;
@@ -79,14 +80,23 @@ function App() {
           pokemon ? (
             <Pokemon pokemon={pokemon} onClick={handleBackClick} />
           ) : (
-            locations.results.map((location, index) => (
-              <Locations
-                key={index}
-                name={location.name}
-                id={index}
-                onClick={handleLocationClick}
-              />
-            ))
+            <>
+              <button
+                onClick={() => {
+                  setLocations(null);
+                }}
+              >
+                Go to Main Page
+              </button>
+              {locations.results.map((location, index) => (
+                <Locations
+                  key={index}
+                  name={location.name}
+                  id={index}
+                  onClick={handleLocationClick}
+                />
+              ))}
+            </>
           )
         ) : (
           <>
@@ -98,14 +108,9 @@ function App() {
           </>
         )
       ) : (
-        <div>
-          <img
-            src={"https://media.tenor.com/fSsxftCb8w0AAAAi/pikachu-running.gif"}
-          />
-          <p className="loadingMessage">The pokemons are beeing fetched</p>
-          <p className="loadingBar">"0/520"</p>
-          <progress id="file" max="520" value="0"></progress>
-        </div>
+        <>
+          <StarterPage />
+        </>
       )}
     </div>
   );

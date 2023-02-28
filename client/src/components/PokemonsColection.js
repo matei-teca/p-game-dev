@@ -22,13 +22,13 @@ export default function PokemonsColection(props) {
         left: "-5vw",
       }}
     >
-      <Carousel style={{ width: "150vw", backgroundColor: "yellow" }}>
+      <Carousel style={{ width: "150vw" }}>
         {slides?.map((slide, index) => (
           <Carousel.Item interval={5000}>
             <div
               style={{
-                marginTop:"3%",
-                backgroundColor: "red",
+                marginTop: "3%",
+                // backgroundColor: "red",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
