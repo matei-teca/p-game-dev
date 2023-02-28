@@ -7,7 +7,6 @@ function App() {
   const [locations, setLocations] = useState(null);
   const [pokemon, setPokemon] = useState(null);
   const [pokemonColection, setPokemonColection] = useState(null);
-
   useEffect(() => {
     let arr = [];
     let loadigbar = document.querySelector(".loadingBar");
@@ -20,14 +19,15 @@ function App() {
           loadigbar.innerText = `${Math.floor(i / 2) + x}/520`;
           progressBar.value = Math.floor(i / 2) + x;
           arr.push(data.chain.species.name);
-          if (i === 528) x = 256;
+          if (i === 528) {
+            x = 256;
+          }
         })
         .catch((e) => {});
     }
     setTimeout(() => {
-      console.log(arr);
       setPokemonColection(arr);
-    }, 4000);
+    }, 3000);
 
     fetch("https://pokeapi.co/api/v2/location")
       .then((res) => res.json())
@@ -81,9 +81,7 @@ function App() {
           />
           <p className="loadingMessage">The pokemons are beeing fetched</p>
           <p className="loadingBar">"0/520"</p>
-          <progress id="file" max="520" value="0">
-            {" "}
-          </progress>
+          <progress id="file" max="520" value="0"></progress>
         </div>
       )}
     </div>
