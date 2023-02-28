@@ -77,6 +77,7 @@ function App() {
           <Pokemon pokemon={pokemon} onClick={handleBackClick} />
         ) : (
           <>
+            <button>Go to Map</button>
             <PokemonsColection
               pokemonColection={pokemonColection}
               onClick={handleSelectClick}

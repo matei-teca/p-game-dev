@@ -27,6 +27,7 @@ export default function PokemonsColection(props) {
           <Carousel.Item interval={5000}>
             <div
               style={{
+                marginTop:"3%",
                 backgroundColor: "red",
                 display: "flex",
                 justifyContent: "center",
