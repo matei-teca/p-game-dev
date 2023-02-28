@@ -19,17 +19,30 @@ export default function PokemonCard(props) {
           backgroundImage: `url(${pokemonDetails.sprites.front_default})`,
         }}
       >
-        <h4>{pokemonDetails.name.toUpperCase()}</h4>
-        <h5>{pokemonDetails.stats[0].base_stat}HP</h5>
-        <h5>{pokemonDetails.stats[1].base_stat}Attack</h5>
-        <h5>{pokemonDetails.stats[2].base_stat}Defense</h5>
-        <div
-          id={pokemonDetails.name}
+        {/* <div
           style={{
             position: "absolute",
             width: "100%",
             height: "100%",
             opacity: 0,
+          }}
+        ></div> */}
+        <h4>{pokemonDetails.name.toUpperCase()}</h4>
+        <h5>{pokemonDetails.stats[0].base_stat}HP</h5>
+        <h5>{pokemonDetails.stats[1].base_stat}Attack</h5>
+        <h5>{pokemonDetails.stats[2].base_stat}Defense</h5>
+        <div
+          className={"backgroundEffect"}
+          id={pokemonDetails.name}
+          style={{
+            backgroundImage: `url(${pokemonDetails.sprites.front_default})`,
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+            opacity: 1,
+            backgroundSize: "65%",
+            backgroundRepeat: " no-repeat",
+            backgroundPosition: "right",
           }}
           onClick={props.onClick}
         ></div>

@@ -16,23 +16,37 @@ h5 {
   background-size: 65%;
   background-repeat: no-repeat;
   background-position: right;
-  background-color: rgb(244, 240, 5) !important;
+  background-color: rgba(228, 255, 0, 0) !important;
+  background: rgb(255, 241, 30) !important;
+  background: radial-gradient(
+    circle,
+    rgb(255, 238, 3) 0%,
+    rgb(73, 248, 9) 100%
+  ) !important;
   image-rendering: pixelated;
   padding-left: 2%;
   height: 33% !important;
   transition: 0.2s;
   border: 0px solid black !important;
   margin-top: 5%;
+  transition: background 1s linear;
 }
-.cardSelected{
-  background-color: rgb(11, 172, 43) !important;
-  border: 7px solid black !important;
-
-}
-
 .card:hover {
-  border: 7px solid black !important;
+  background-color: #b2ffff !important;
+  box-shadow: 0 0 20px 0 white, 0 0 40px 0 white, 0 0 60px 0 white;
 }
+
+.cardSelected {
+  background: rgb(255, 241, 30) !important;
+  background: radial-gradient(
+    circle,
+    rgb(249, 232, 0) 0%,
+    rgb(241, 15, 185) 100%
+  ) !important;
+  /* border: 7px solid black !important; */
+  box-shadow: 0 0 25px 0 white, 0 0 50px 0 white, 0 0 80px 0 white;
+}
+
 body {
   overflow-x: hidden;
 }
