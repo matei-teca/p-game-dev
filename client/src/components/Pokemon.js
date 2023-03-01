@@ -40,20 +40,19 @@ export default function Pokemon(props) {
         break;
     }
   };
-  const getStats = (type) => {
-    let ATTACK, HP, DAMAGE, DEFENSE, CRITCHANCEHP_LEFT;
-    CRITCHANCEHP_LEFT = Math.floor(Math.random() * (255 - 217)) + 217;
+  const getStats = (opponent, current) => {
+    let ATTACK, HP, DAMAGE, DEFENSE, CRITCHANCE;
+    CRITCHANCE = Math.floor(Math.random() * (255 - 217)) + 217;
     ATTACK =
-      document.querySelector(`#${turn}>.pokemon-attack`).firstChild
+      document.querySelector(`#${current}>.pokemon-attack`).firstChild
         .textContent * 1;
     DEFENSE =
-      document.querySelector(`#${type}>.pokemon-defense`).firstChild
+      document.querySelector(`#${opponent}>.pokemon-defense`).firstChild
         .textContent * 1;
-    HP = document.querySelector(`#${type}>progress`).value * 1;
+    HP = document.querySelector(`#${opponent}>progress`).value * 1;
     DAMAGE =
-      ((((2 / 5 + 2) * ATTACK * 60) / DEFENSE / 50 + 2) * CRITCHANCEHP_LEFT) /
-      255;
-    document.querySelector(`#${type}>progress`).value = HP - DAMAGE;
+      ((((2 / 5 + 2) * ATTACK * 60) / DEFENSE / 50 + 2) * CRITCHANCE) / 255;
+    document.querySelector(`#${opponent}>progress`).value = HP - DAMAGE;
     return HP - DAMAGE;
   };
 
@@ -62,13 +61,13 @@ export default function Pokemon(props) {
 
     switch (turn) {
       case "enemy":
-        HP_LEFT = getStats("player");
+        HP_LEFT = getStats("player", "enemy");
         document.querySelector(`#player>.pokemon-hp`).firstChild.innerText =
           Math.floor(HP_LEFT) > 0 ? Math.floor(HP_LEFT) : 0;
         setTurn("player");
         break;
       case "player":
-        HP_LEFT = getStats("enemy");
+        HP_LEFT = getStats("enemy", "player");
         document.querySelector(`#enemy>.pokemon-hp`).firstChild.innerText =
           Math.floor(HP_LEFT) > 0
             ? Math.floor(HP_LEFT)
