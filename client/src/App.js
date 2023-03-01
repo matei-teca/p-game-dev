@@ -78,7 +78,13 @@ function App() {
       {pokemonColection ? (
         locations ? (
           pokemon ? (
-            <Pokemon pokemon={pokemon} onClick={handleBackClick} />
+            <div>
+              <Pokemon
+                pokemon={pokemon}
+                onClick={handleBackClick}
+                usersPokemons={usersPokemons}
+              />
+            </div>
           ) : (
             <>
               <button

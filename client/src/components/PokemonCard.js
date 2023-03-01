@@ -11,13 +11,11 @@ export default function PokemonCard(props) {
         setPokemonDetails(data);
       })
       .catch((e) => {});
-  }, []);
+  }, []); 
   return (
     pokemonDetails && (
       <Card
-        style={{
-          backgroundImage: `url(${pokemonDetails.sprites.front_default})`,
-        }}
+        className={props.className ? props.className : ""}
       >
         {/* <div
           style={{
@@ -32,7 +30,6 @@ export default function PokemonCard(props) {
         <h5>{pokemonDetails.stats[1].base_stat}Attack</h5>
         <h5>{pokemonDetails.stats[2].base_stat}Defense</h5>
         <div
-          className={"backgroundEffect"}
           id={pokemonDetails.name}
           style={{
             backgroundImage: `url(${pokemonDetails.sprites.front_default})`,
@@ -45,7 +42,8 @@ export default function PokemonCard(props) {
             backgroundPosition: "right",
           }}
           onClick={props.onClick}
-        ></div>
+        >
+        </div>
       </Card>
     )
   );

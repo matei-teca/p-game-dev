@@ -1,12 +1,55 @@
+
 .pokemon_encounter-stats {
   background-size: contain;
   background-repeat: no-repeat;
-  background-position-y:-30px ;
-  background-color: aqua;
-  width: 35vw;
-  height: 70vh;
+  background-position: center;
+  width: 40vw;
+  height: 60vh;
   image-rendering: pixelated;
   padding-left: 2%;
+  text-align: center;
+}
+
+.pokemon-attack {
+  position: absolute;
+  right:0;
+  bottom: 0;
+}
+
+.pokemon-defense {
+  position: absolute;
+  left:0;
+  bottom: 0;
+}
+
+.select-a-pokemon-text {
+  position: absolute;
+  top:20vh;
+  left: 5vw
+}
+
+
+.users-pokemons {
+  position:absolute;
+  bottom: 2%;
+  width:100%;
+  height: 40%;
+  display:flex
+}
+.users-pokemons-card{
+  margin-inline: 2%;
+  width: 33%;
+  height: 70% !important
+}
+
+.pokemon_encounter-stats-right{
+  position: absolute;
+  right: 2%;
+}
+
+.pokemon_encounter-stats-left{
+  position: absolute;
+  left: 2%;
 }
 
 h5 {
@@ -27,7 +70,7 @@ h5 {
   ) !important;
   image-rendering: pixelated;
   padding-left: 2%;
-  height: 33% !important;
+  height: 33%;
   transition: 0.2s;
   border: 0px solid black !important;
   margin-top: 4%;
