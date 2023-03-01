@@ -12,14 +12,14 @@ progress {
 }
 
 .pokemon-hp {
-font-size: 34px;
-    margin-top: -62px;
+  font-size: 34px;
+  margin-top: -62px;
 }
 
-#start-battle{
+#start-battle {
   position: absolute;
   bottom: 44%;
-  left:47%;
+  left: 47%;
 }
 
 .go-to-map {
@@ -71,6 +71,12 @@ font-size: 34px;
   width: 33%;
   height: 70% !important;
 }
+.colection-slide {
+  position: absolute !important;
+  bottom: 2%;
+  width: 100%;
+  height: 40%;
+}
 
 .pokemon_encounter-stats-right {
   position: absolute;
@@ -111,6 +117,8 @@ h5 {
   background-color: #b2ffff !important;
   box-shadow: 0 0 20px 0 white, 0 0 40px 0 white, 0 0 60px 0 white;
 }
+
+
 
 .cardSelected {
   background: rgb(255, 241, 30) !important;

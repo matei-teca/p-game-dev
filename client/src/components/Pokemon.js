@@ -1,11 +1,19 @@
 import { useState } from "react";
 import PokemonCard from "./PokemonCard";
 import UsersPokemons from "./UsersPokemons";
+import "bootstrap/dist/css/bootstrap.css";
+import Carousel from "react-bootstrap/Carousel";
+import CarouselColumn from "./CarouselColumn";
 
 export default function Pokemon(props) {
   const [usersPokemons, setUsersPokemons] = useState(props.usersPokemons);
   const [turn, setTurn] = useState("player");
   const [pokemonSelected, setPokemonSelected] = useState(null);
+
+  let colectionSlides = [];
+  for (let i = 0; i < usersPokemons.length; i += 3) {
+    colectionSlides.push(usersPokemons.slice(i, i + 3));
+  }
 
   const handleUsersPokemonClick = (e) => {
     setPokemonSelected(e.target.id);
@@ -108,17 +116,26 @@ export default function Pokemon(props) {
           <h1 className="select-a-pokemon-text">Select a pokemon to fight!</h1>
         )}
       </div>
-
-      <div className="users-pokemons">
-        {usersPokemons.map((pokemonName, index) => (
-          <PokemonCard
-            key={index}
-            name={pokemonName}
-            className="users-pokemons-card"
-            onClick={handleUsersPokemonClick}
-          />
-        ))}
-      </div>
+      {
+        <>
+          <Carousel className="colection-slide">
+            {colectionSlides.map((slide, index) => (
+              <Carousel.Item interval={10000} style={{ height: "700px" }}>
+                <div className="users-pokemons" style={{top:"3px"}}>
+                  {slide.map((pokemonName, index) => (
+                    <PokemonCard
+                      key={index}
+                      name={pokemonName}
+                      className="users-pokemons-card"
+                      onClick={handleUsersPokemonClick}
+                    />
+                  ))}
+                </div>
+              </Carousel.Item>
+            ))}
+          </Carousel>
+        </>
+      }
     </div>
   );
 }
