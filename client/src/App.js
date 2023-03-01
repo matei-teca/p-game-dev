@@ -5,6 +5,7 @@ import Pokemon from "./components/Pokemon";
 import "bootstrap/dist/css/bootstrap.css";
 import PokemonsColection from "./components/PokemonsColection";
 import StarterPage from "./components/StarterPage";
+import PopupPokemon from "./components/PopupPokemon";
 
 let usersPokemons = [];
 let x = 0;
@@ -104,6 +105,7 @@ function App() {
             <button onClick={loadMap} className="go-to-map">
               Go to Map
             </button>
+            <PopupPokemon className="go-to-map"/>
             <PokemonsColection
               pokemonColection={pokemonColection}
               onClick={handleSelectClick}
