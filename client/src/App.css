@@ -77,28 +77,125 @@ body {
 }
 
 .location--item-small {
+  position: absolute;
   background-color: rgba(0, 0, 0, 0);
   background-image: url("https://cdn.iconscout.com/icon/premium/png-256-thumb/pokeball-location-674567.png");
   background-size: contain;
-  width: 100px;
-  height: 100px;
-  padding: 10px;
+  background-size: none;
+  width: 4vw;
+  height: 7vh;
+  padding: 1vh;
+  padding-top: 0px;
   overflow: hidden;
   margin: 30px;
   border-radius: 50%;
   color: rgba(240, 248, 255, 0);
+  transition: all 1s, color 0s, padding 2s, width 1s, heigth 1s;
 }
 
 .location--item-small:hover {
-  background-color: black;
-  background-image: none;
-  color: rgb(255, 255, 255);
+  background: rgb(255,239,0);
+  background: radial-gradient(circle, rgba(255,239,0,1) 0%, rgba(170,245,60,1) 23%, rgba(21,255,17,1) 57%, rgba(10,144,0,1) 100%);
+  color: black;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 20px;
+  padding-top: 30px;
   text-align: center;
   cursor: pointer;
-  transition: 1s;
   box-shadow: 0 0 20px 0 yellow, 0 0 40px 0 yellow, 0 0 60px 0 yellow;
+  width: 100px;
+  height: 100px;
+  transition: all 1s, color 3s, padding 2s, width 1s, heigth 1s;
+
+}
+
+#location0 {
+  top: 29vh;
+  left: 10vw;
+}
+
+#location1 {
+  top: 12vh;
+  left: 24vw;
+}
+#location2 {
+  top: 21vh;
+  left: 30vw;
+}
+#location3 {
+  top: 5vh;
+  left: 37.5vw;
+}
+#location4 {
+  top: 19.8vh;
+  left: 45vw;
+}
+#location5 {
+  top: 26vh;
+  left: 68vw;
+}
+#location6 {
+  top: 35vh;
+  left: 59vw;
+}
+#location7 {
+  top: 52vh;
+  left: 87vw;
+}
+#location8 {
+  top: 70vh;
+  left: 69vw;
+}
+#location9 {
+  top: 49vh;
+  left: 76vw;
+}
+#location10 {
+  top: 63vh;
+  left: 44.4vw;
+}
+
+#location11 {
+  top: 63vh;
+  left: 33.4vw;
+}
+#location12 {
+  top: 76vh;
+  left: 53.8vw;
+}
+
+#location13 {
+  top: 81vh;
+  left: 15.8vw;
+}
+
+#location14 {
+  top: 58vh;
+  left: 81.8vw;
+}
+
+#location15 {
+  top: 53vh;
+  left: 17.8vw;
+}
+
+#location16 {
+  top: 47vh;
+  left: 8.2vw;
+}
+
+#location17 {
+  top: 36vh;
+  left: 18.8vw;
+}
+
+#location18 {
+  top: 68vh;
+  left: 24.8vw;
+}
+
+#location19 {
+  top: 48vh;
+  left: 45.1vw;
 }

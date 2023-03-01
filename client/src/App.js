@@ -73,7 +73,7 @@ function App() {
                 <Locations
                   key={index}
                   name={location.name}
-                  id={index}
+                  id={`location${index}`}
                   onClick={handleLocationClick}
                 />
               ))}
