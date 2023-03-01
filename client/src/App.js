@@ -84,6 +84,10 @@ function App() {
                 pokemon={pokemon}
                 onClick={handleBackClick}
                 usersPokemons={usersPokemons}
+                addToColection={(newPokemon) => {
+                  if (!usersPokemons.includes(newPokemon))
+                    usersPokemons = [...usersPokemons, newPokemon];
+                }}
               />
             </div>
           ) : (

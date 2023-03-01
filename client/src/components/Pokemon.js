@@ -28,6 +28,7 @@ export default function Pokemon(props) {
         handleTurn(turn, e);
         break;
       case "Catch":
+        props.addToColection(props.pokemon.name);
         if (!usersPokemons.includes(props.pokemon.name))
           setUsersPokemons([...usersPokemons, props.pokemon.name]);
         break;
