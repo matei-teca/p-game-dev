@@ -4,6 +4,12 @@ import PokemonCard from "./PokemonCard";
 
 
 export default function MyVerticallyCenteredModal(props) {
+
+  const handleClick = () => {
+    document.querySelector(`#${props.name}`).parentElement.classList.add("cardSelected")
+    
+  }
+
     return (
       <Modal
         {...props}
@@ -17,7 +23,7 @@ export default function MyVerticallyCenteredModal(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <PokemonCard name={"weedle"} key={1} onClick={() => {}} />
+            <PokemonCard name={props.name} key={1} onClick={handleClick} />
         </Modal.Body>
 
         <Modal.Footer style={{display: "flex", justifyContent:"center"}}>
