@@ -79,6 +79,7 @@ function App() {
         locations ? (
           pokemon ? (
             <div>
+              <button onClick={handleBackClick}>Back</button>
               <Pokemon
                 pokemon={pokemon}
                 onClick={handleBackClick}
@@ -92,7 +93,8 @@ function App() {
                   <Locations
                     key={index}
                     name={location.name}
-                    id={`location${index}`}
+                    id={index}
+                    locationID={`location${index}`}
                     onClick={handleLocationClick}
                   />
                 ))}

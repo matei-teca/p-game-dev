@@ -6,8 +6,23 @@
   text-align: center;
 }
 
+progress {
+  height: 60px;
+  width: 300px;
+}
 
-.go-to-map{
+.pokemon-hp {
+font-size: 34px;
+    margin-top: -62px;
+}
+
+#start-battle{
+  position: absolute;
+  bottom: 44%;
+  left:47%;
+}
+
+.go-to-map {
   position: absolute;
   z-index: 1;
   top: 0;
@@ -15,9 +30,10 @@
 }
 
 .pokemon_encounter-stats {
-  background-size: contain;
+  background-size: 65%;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position-x: center;
+  background-position-y: 220%;
   width: 40vw;
   height: 60vh;
   image-rendering: pixelated;
@@ -27,42 +43,41 @@
 
 .pokemon-attack {
   position: absolute;
-  right:0;
+  right: 0;
   bottom: 0;
 }
 
 .pokemon-defense {
   position: absolute;
-  left:0;
+  left: 0;
   bottom: 0;
 }
 
 .select-a-pokemon-text {
   position: absolute;
-  top:20vh;
-  left: 5vw
+  top: 20vh;
+  left: 5vw;
 }
-
 
 .users-pokemons {
-  position:absolute;
+  position: absolute;
   bottom: 2%;
-  width:100%;
+  width: 100%;
   height: 40%;
-  display:flex
+  display: flex;
 }
-.users-pokemons-card{
+.users-pokemons-card {
   margin-inline: 2%;
   width: 33%;
-  height: 70% !important
+  height: 70% !important;
 }
 
-.pokemon_encounter-stats-right{
+.pokemon_encounter-stats-right {
   position: absolute;
   right: 2%;
 }
 
-.pokemon_encounter-stats-left{
+.pokemon_encounter-stats-left {
   position: absolute;
   left: 2%;
 }
@@ -112,7 +127,6 @@ h5 {
 body {
   overflow-x: hidden;
   overflow-y: hidden;
-
 }
 .card--container {
   /* background-color: blue; */
@@ -165,8 +179,14 @@ body {
 }
 
 .location--item-small:hover {
-  background: rgb(255,239,0);
-  background: radial-gradient(circle, rgba(255,239,0,1) 0%, rgba(170,245,60,1) 23%, rgba(21,255,17,1) 57%, rgba(10,144,0,1) 100%);
+  background: rgb(255, 239, 0);
+  background: radial-gradient(
+    circle,
+    rgba(255, 239, 0, 1) 0%,
+    rgba(170, 245, 60, 1) 23%,
+    rgba(21, 255, 17, 1) 57%,
+    rgba(10, 144, 0, 1) 100%
+  );
   background-repeat: none;
   color: black;
   display: flex;
@@ -180,100 +200,99 @@ body {
   height: 100px;
   font-size: small;
   transition: all 0.5s, color 1s, padding 0.7s;
-
 }
 
-#location0 {
+.location0 {
   top: 29vh;
   left: 10vw;
 }
 
-#location1 {
+.location1 {
   top: 12vh;
   left: 24vw;
 }
-#location2 {
+.location2 {
   top: 21vh;
   left: 30vw;
 }
-#location3 {
+.location3 {
   top: 5vh;
   left: 37.5vw;
 }
-#location4 {
+.location4 {
   top: 19.8vh;
   left: 45vw;
 }
-#location5 {
+.location5 {
   top: 26vh;
   left: 68vw;
 }
-#location6 {
+.location6 {
   top: 35vh;
   left: 59vw;
 }
-#location7 {
+.location7 {
   top: 52vh;
   left: 87vw;
 }
-#location8 {
+.location8 {
   top: 70vh;
   left: 69vw;
 }
-#location9 {
+.location9 {
   top: 49vh;
   left: 76vw;
 }
-#location10 {
+.location10 {
   top: 63vh;
   left: 44.4vw;
 }
 
-#location11 {
+.location11 {
   top: 63vh;
   left: 33.4vw;
 }
-#location12 {
+.location12 {
   top: 76vh;
   left: 53.8vw;
 }
 
-#location13 {
+.location13 {
   top: 81vh;
   left: 15.8vw;
 }
 
-#location14 {
+.location14 {
   top: 58vh;
   left: 81.8vw;
 }
 
-#location15 {
+.location15 {
   top: 53vh;
   left: 17.8vw;
 }
 
-#location16 {
+.location16 {
   top: 47vh;
   left: 8.2vw;
 }
 
-#location17 {
+.location17 {
   top: 36vh;
   left: 18.8vw;
 }
 
-#location18 {
+.location18 {
   top: 68vh;
   left: 24.8vw;
 }
 
-#location19 {
+.location19 {
   top: 48vh;
   left: 45.1vw;
 }
 
-#location19:hover {
+.location19:hover {
   top: 45vh;
   left: 43.7vw;
 }

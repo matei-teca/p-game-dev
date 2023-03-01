@@ -11,10 +11,19 @@ export default function UsersPokemons(props) {
 
   return (
     pokemonDetails && (
-      <div>
-        <div className="pokemon_encounter-stats pokemon_encounter-stats-left">
+      <>
+        <div
+          id={props.id}
+          className={`pokemon_encounter-stats pokemon_encounter-stats-${props.position}`}
+        >
           <h2>{pokemonDetails.name.toUpperCase()}</h2>
-          <h3 className="pokemon-HP">{pokemonDetails.stats[0].base_stat}HP</h3>
+          <progress
+            max={pokemonDetails.stats[0].base_stat}
+            value={pokemonDetails.stats[0].base_stat}
+          />
+          <div className="pokemon-hp">
+            <strong>{pokemonDetails.stats[0].base_stat}</strong>
+          </div>
           <h3 className="pokemon-attack">
             {pokemonDetails.stats[1].base_stat}Attack
           </h3>
@@ -23,13 +32,17 @@ export default function UsersPokemons(props) {
           </h3>
         </div>
         <div
-          className="pokemon_encounter-stats pokemon_encounter-stats-left"
+          className={`pokemon_encounter-stats pokemon_encounter-stats-${props.position}`}
           style={{
-            backgroundImage: `url(${pokemonDetails.sprites.back_default})`,
+            backgroundImage: `url(${
+              pokemonDetails.sprites[`${props.side}_default`]
+                ? pokemonDetails.sprites[`${props.side}_default`]
+                : pokemonDetails.sprites.front_default
+            })`,
             position: "absolute",
           }}
         ></div>
-      </div>
+      </>
     )
   );
 }
