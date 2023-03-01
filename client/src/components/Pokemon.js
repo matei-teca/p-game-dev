@@ -40,44 +40,42 @@ export default function Pokemon(props) {
         break;
     }
   };
-
-  const handleTurn = (turn, e) => {
-    let attack, defense, hp, damage;
-    let critChance = Math.floor(Math.random() * (255 - 217)) + 217;
-    attack =
+  const getStats = (type) => {
+    let ATTACK, HP, DAMAGE, DEFENSE, CRITCHANCEHP_LEFT;
+    CRITCHANCEHP_LEFT = Math.floor(Math.random() * (255 - 217)) + 217;
+    ATTACK =
       document.querySelector(`#${turn}>.pokemon-attack`).firstChild
         .textContent * 1;
+    DEFENSE =
+      document.querySelector(`#${type}>.pokemon-defense`).firstChild
+        .textContent * 1;
+    HP = document.querySelector(`#${type}>progress`).value * 1;
+    DAMAGE =
+      ((((2 / 5 + 2) * ATTACK * 60) / DEFENSE / 50 + 2) * CRITCHANCEHP_LEFT) /
+      255;
+    document.querySelector(`#${type}>progress`).value = HP - DAMAGE;
+    return HP - DAMAGE;
+  };
+
+  const handleTurn = (turn, e) => {
+    let HP_LEFT;
+
     switch (turn) {
       case "enemy":
-        defense =
-          document.querySelector(`#player>.pokemon-defense`).firstChild
-            .textContent * 1;
-        hp = document.querySelector(`#player>progress`).value * 1;
-        damage =
-          ((((2 / 5 + 2) * attack * 60) / defense / 50 + 2) * critChance) / 255;
-        document.querySelector(`#player>progress`).value = hp - damage;
+        HP_LEFT = getStats("player");
         document.querySelector(`#player>.pokemon-hp`).firstChild.innerText =
-          Math.floor(hp - damage) > 0 ? Math.floor(hp - damage) : 0;
-
-        console.log(attack, defense, hp, critChance);
+          Math.floor(HP_LEFT) > 0 ? Math.floor(HP_LEFT) : 0;
         setTurn("player");
         break;
       case "player":
-        defense =
-          document.querySelector(`#enemy>.pokemon-defense`).firstChild
-            .textContent * 1;
-        hp = document.querySelector(`#enemy>progress`).value * 1;
-        damage =
-          ((((2 / 5 + 2) * attack * 60) / defense / 50 + 2) * critChance) / 255;
-        document.querySelector(`#enemy>progress`).value = hp - damage;
+        HP_LEFT = getStats("enemy");
         document.querySelector(`#enemy>.pokemon-hp`).firstChild.innerText =
-          Math.floor(hp - damage) > 0
-            ? Math.floor(hp - damage)
+          Math.floor(HP_LEFT) > 0
+            ? Math.floor(HP_LEFT)
             : (() => {
                 e.target.innerText = "Catch";
                 return 0;
               })();
-        console.log(attack, defense, hp, critChance);
         setTurn("enemy");
         break;
     }
