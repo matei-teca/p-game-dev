@@ -81,7 +81,7 @@ body {
   background-color: rgba(0, 0, 0, 0);
   background-image: url("https://cdn.iconscout.com/icon/premium/png-256-thumb/pokeball-location-674567.png");
   background-size: contain;
-  background-size: none;
+  background-repeat: none;
   width: 4vw;
   height: 7vh;
   padding: 1vh;
@@ -90,12 +90,13 @@ body {
   margin: 30px;
   border-radius: 50%;
   color: rgba(240, 248, 255, 0);
-  transition: all 1s, color 0s, padding 2s, width 1s, heigth 1s;
+  transition: all 0.5s, color 0s, padding 0.7s;
 }
 
 .location--item-small:hover {
   background: rgb(255,239,0);
   background: radial-gradient(circle, rgba(255,239,0,1) 0%, rgba(170,245,60,1) 23%, rgba(21,255,17,1) 57%, rgba(10,144,0,1) 100%);
+  background-repeat: none;
   color: black;
   display: flex;
   justify-content: center;
@@ -106,7 +107,7 @@ body {
   box-shadow: 0 0 20px 0 yellow, 0 0 40px 0 yellow, 0 0 60px 0 yellow;
   width: 100px;
   height: 100px;
-  transition: all 1s, color 3s, padding 2s, width 1s, heigth 1s;
+  transition: all 0.5s, color 1s, padding 0.7s;
 
 }
 
