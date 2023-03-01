@@ -1,9 +1,15 @@
-import React from 'react'
+import React from 'react';
+import PopupPokemon from "./PopupPokemon";
 
 export default function SearchBar(props) {
+
+    // const [currPokemonName, setCurrPokemonName] = useState(second)
+    // onChange={(e) => setCurrPokemonName(e.target.value)} 
+    // currPokemonName = {currPokemonName}
+
   return (
     <div>
-        <input list="search-bar--datalist" id="search-bar--input" type="text" placeholder="pokemon search"/>
+        <input list="search-bar--datalist" id="search-bar--input" type="text" placeholder="pokemon search" />
         <datalist id="search-bar--datalist">
             {props.pokemonColection?.map((pokemon, index) => 
             {
@@ -12,6 +18,7 @@ export default function SearchBar(props) {
 
             )}
         </datalist>
+
     </div>
   )
 }
