@@ -1,5 +1,7 @@
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import PokemonCard from "./PokemonCard";
+
 
 export default function MyVerticallyCenteredModal(props) {
     return (
@@ -15,15 +17,11 @@ export default function MyVerticallyCenteredModal(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h4>Centered Modal</h4>
-          <p>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-            consectetur ac, vestibulum at eros.
-          </p>
+            <PokemonCard name={"weedle"} key={1} onClick={() => {}} />
         </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
+
+        <Modal.Footer style={{display: "flex", justifyContent:"center"}}>
+          <Button onClick={() => alert("clicked")}>Add</Button>
         </Modal.Footer>
       </Modal>
     );
