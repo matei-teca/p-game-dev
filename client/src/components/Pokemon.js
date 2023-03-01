@@ -2,8 +2,8 @@ import { useState } from "react";
 import PokemonCard from "./PokemonCard";
 import UsersPokemons from "./UsersPokemons";
 
-let hpPlayer, hpEnemy
 export default function Pokemon(props) {
+  const [usersPokemons, setUsersPokemons] = useState(props.usersPokemons);
   const [turn, setTurn] = useState("player");
   const [pokemonSelected, setPokemonSelected] = useState(null);
 
@@ -19,18 +19,22 @@ export default function Pokemon(props) {
     switch (e.target.innerText) {
       case "Start Battle":
         console.log(turn);
-        handleTurn(turn,e);
+        handleTurn(turn, e);
         setTurn("enemy");
         e.target.innerText = "Next turn";
         break;
       case "Next turn":
         console.log(turn);
-        handleTurn(turn,e);
+        handleTurn(turn, e);
+        break;
+      case "Catch":
+        if (!usersPokemons.includes(props.pokemon.name))
+          setUsersPokemons([...usersPokemons, props.pokemon.name]);
         break;
     }
   };
 
-  const handleTurn = (turn,e) => {
+  const handleTurn = (turn, e) => {
     let attack, defense, hp, damage;
     let critChance = Math.floor(Math.random() * (255 - 217)) + 217;
     attack =
@@ -45,8 +49,9 @@ export default function Pokemon(props) {
         damage =
           ((((2 / 5 + 2) * attack * 60) / defense / 50 + 2) * critChance) / 255;
         document.querySelector(`#player>progress`).value = hp - damage;
-        document.querySelector(`#player>.pokemon-hp`).firstChild.innerText = Math.floor(hp - damage) > 0 ? Math.floor(hp - damage) : 0
-        
+        document.querySelector(`#player>.pokemon-hp`).firstChild.innerText =
+          Math.floor(hp - damage) > 0 ? Math.floor(hp - damage) : 0;
+
         console.log(attack, defense, hp, critChance);
         setTurn("player");
         break;
@@ -58,10 +63,13 @@ export default function Pokemon(props) {
         damage =
           ((((2 / 5 + 2) * attack * 60) / defense / 50 + 2) * critChance) / 255;
         document.querySelector(`#enemy>progress`).value = hp - damage;
-        document.querySelector(`#enemy>.pokemon-hp`).firstChild.innerText = Math.floor(hp - damage) > 0 ? Math.floor(hp - damage) : (()=>{
-          e.target.innerText = "Catch"
-          return 0
-        })()
+        document.querySelector(`#enemy>.pokemon-hp`).firstChild.innerText =
+          Math.floor(hp - damage) > 0
+            ? Math.floor(hp - damage)
+            : (() => {
+                e.target.innerText = "Catch";
+                return 0;
+              })();
         console.log(attack, defense, hp, critChance);
         setTurn("enemy");
         break;
@@ -80,7 +88,6 @@ export default function Pokemon(props) {
         name={props.pokemon.name}
         position={"right"}
         side={"front"}
-        
       />
 
       <div>
@@ -102,7 +109,7 @@ export default function Pokemon(props) {
       </div>
 
       <div className="users-pokemons">
-        {props.usersPokemons.map((pokemonName, index) => (
+        {usersPokemons.map((pokemonName, index) => (
           <PokemonCard
             key={index}
             name={pokemonName}
