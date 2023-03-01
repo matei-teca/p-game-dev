@@ -9,34 +9,11 @@ export default function PokemonsColection(props) {
   }
 
   return (
-    <div
-      style={{
-        backgroundColor: "green",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "110vw",
-        height: "100vh",
-        padding: 30,
-        position: "absolute",
-        left: "-5vw",
-      }}
-    >
+    <div className="main-carousel-div">
       <Carousel style={{ width: "150vw" }}>
         {slides?.map((slide, index) => (
           <Carousel.Item interval={5000}>
-            <div
-              style={{
-                marginTop: "3%",
-                // backgroundColor: "red",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                width: "110vw",
-                height: "90vh",
-                paddingInline: 150,
-              }}
-            >
+            <div className="main-carousel-itervals">
               {(() => {
                 let columnsArr = [];
                 for (let i = 0; i < slide.length; i += 3) {

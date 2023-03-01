@@ -77,7 +77,26 @@ progress {
   width: 100%;
   height: 40%;
 }
-
+.main-carousel-itervals {
+  margin-top: 3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 110vw;
+  height: 90vh;
+  padding-inline: 150px;
+}
+.main-carousel-div {
+  background-color: green;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 110vw;
+  height: 100vh;
+  padding: 30;
+  position: absolute;
+  left: -5vw;
+}
 .pokemon_encounter-stats-right {
   position: absolute;
   right: 2%;
