@@ -20,14 +20,6 @@ export default function Pokemon(props) {
         <div
           className="pokemon_encounter-stats"
           style={{ backgroundImage: `url(${pokemon.sprites.front_default})` }}
-        ></div>
-        <div
-          style={{
-            height: "30%",
-            width:"30%",
-            position: "absolute",
-            bottom: "22%",
-          }}
         >
           <h2>{pokemon.name.toUpperCase()}</h2>
           <h3>{pokemon.stats[0].base_stat}HP</h3>
