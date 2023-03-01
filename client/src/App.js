@@ -75,8 +75,7 @@ function App() {
 
   return (
     <div className="App">
-      {pokemonColection ? (
-        locations ? (
+      {pokemonColection ? (locations ? (
           pokemon ? (
             <div>
               <Pokemon
@@ -86,23 +85,18 @@ function App() {
               />
             </div>
           ) : (
-            <>
-              <button
-                onClick={() => {
-                  setLocations(null);
-                }}
-              >
-                Go to Main Page
-              </button>
+            
+              <div className="locations--container">
+              
               {locations.results.map((location, index) => (
                 <Locations
-                  key={index}
-                  name={location.name}
-                  id={index}
-                  onClick={handleLocationClick}
+                key={index}
+                name={location.name}
+                id={index}
+                onClick={handleLocationClick}
                 />
-              ))}
-            </>
+                ))}
+                </div>
           )
         ) : (
           <>

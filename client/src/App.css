@@ -1,3 +1,10 @@
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* background-color: yellow; */
+}
 
 .pokemon_encounter-stats {
   background-size: contain;
@@ -76,6 +83,7 @@ h5 {
   margin-top: 4%;
   transition: 0.3s linear;
 }
+
 .card:hover {
   background-color: #b2ffff !important;
   box-shadow: 0 0 20px 0 white, 0 0 40px 0 white, 0 0 60px 0 white;
@@ -107,8 +115,157 @@ body {
   transition: 1s;
 }
 
-/* .card--container:hover {
-  width: 24%;
-  height: 80%;
-  transition: 1s;
-} */
+.locations--container {
+  background-color: blue;
+  width: 90vw;
+  height: 90vh;
+  background-image: url("https://cdn.vox-cdn.com/thumbor/GBgA_qT8m0OBbGWKgF7bwqCf6js=/0x0:8185x5787/1120x0/filters:focal(0x0:8185x5787):format(webp):no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/23922676/Pokemon_SV_Worldmap.jpg");
+  background-size: 100%;
+  border-radius: 30%;
+  image-rendering: optimizeQuality;
+
+  /* background-repeat: no-repeat; */
+}
+
+.location--item {
+  background-color: red;
+  width: 10%;
+  /* height: 5%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  text-align: center;
+  margin-block: 10px;
+}
+
+.location--item-small {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url("https://cdn.iconscout.com/icon/premium/png-256-thumb/pokeball-location-674567.png");
+  background-size: contain;
+  background-repeat: none;
+  width: 4vw;
+  height: 7vh;
+  padding: 1vh;
+  padding-top: 0px;
+  overflow: hidden;
+  margin: 30px;
+  border-radius: 50%;
+  color: rgba(240, 248, 255, 0);
+  transition: all 0.5s, color 0s, padding 0.7s;
+}
+
+.location--item-small:hover {
+  background: rgb(255,239,0);
+  background: radial-gradient(circle, rgba(255,239,0,1) 0%, rgba(170,245,60,1) 23%, rgba(21,255,17,1) 57%, rgba(10,144,0,1) 100%);
+  background-repeat: none;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 0 20px 0 yellow, 0 0 40px 0 yellow, 0 0 60px 0 yellow;
+  width: 100px;
+  height: 100px;
+  font-size: small;
+  transition: all 0.5s, color 1s, padding 0.7s;
+
+}
+
+#location0 {
+  top: 29vh;
+  left: 10vw;
+}
+
+#location1 {
+  top: 12vh;
+  left: 24vw;
+}
+#location2 {
+  top: 21vh;
+  left: 30vw;
+}
+#location3 {
+  top: 5vh;
+  left: 37.5vw;
+}
+#location4 {
+  top: 19.8vh;
+  left: 45vw;
+}
+#location5 {
+  top: 26vh;
+  left: 68vw;
+}
+#location6 {
+  top: 35vh;
+  left: 59vw;
+}
+#location7 {
+  top: 52vh;
+  left: 87vw;
+}
+#location8 {
+  top: 70vh;
+  left: 69vw;
+}
+#location9 {
+  top: 49vh;
+  left: 76vw;
+}
+#location10 {
+  top: 63vh;
+  left: 44.4vw;
+}
+
+#location11 {
+  top: 63vh;
+  left: 33.4vw;
+}
+#location12 {
+  top: 76vh;
+  left: 53.8vw;
+}
+
+#location13 {
+  top: 81vh;
+  left: 15.8vw;
+}
+
+#location14 {
+  top: 58vh;
+  left: 81.8vw;
+}
+
+#location15 {
+  top: 53vh;
+  left: 17.8vw;
+}
+
+#location16 {
+  top: 47vh;
+  left: 8.2vw;
+}
+
+#location17 {
+  top: 36vh;
+  left: 18.8vw;
+}
+
+#location18 {
+  top: 68vh;
+  left: 24.8vw;
+}
+
+#location19 {
+  top: 48vh;
+  left: 45.1vw;
+}
+
+#location19:hover {
+  top: 45vh;
+  left: 43.7vw;
+}
