@@ -1,9 +1,17 @@
-.App {
+.locations-app {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  /* background-color: yellow; */
+  text-align: center;
+}
+
+
+.go-to-map{
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 200px;
 }
 
 .pokemon_encounter-stats {
