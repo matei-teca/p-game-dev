@@ -138,11 +138,10 @@ export default function SearchBar(props) {
                 id="search-bar--input"
                 type="search"
                 placeholder="pokemon search"
-                className="me-2"
-                style={{width: "13vw", marginLeft: "1vw"}}
+                style={{width: "13vw"}}
              />
 
-            <Button variant="outline-success" onClick={handleSearchClick}>Search</Button>
+            <Button variant="outline-success" onClick={handleSearchClick} style={{marginLeft: "1vw"}}>Search</Button>
             <Button variant="outline-success" onClick={handlePokemonsSelectedClick} style={{width: "13vw", marginLeft: "1vw"}}>Pokemons Selected</Button>
           </div>
           </Form>
