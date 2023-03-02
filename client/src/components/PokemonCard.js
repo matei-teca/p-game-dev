@@ -10,13 +10,17 @@ export default function PokemonCard(props) {
       .then((data) => {
         setPokemonDetails(data);
       })
-      .catch((e) => {});
-  }, []); 
+      .catch((e) => setPokemonDetails("error"));
+  }, []);
   return (
-    pokemonDetails && (
-      <Card
-        className={props.className ? props.className : ""}
-      >
+    pokemonDetails &&
+    (pokemonDetails === "error" ? (
+      <Card className={"card-error"}>
+        <h1>{props.name.toUpperCase()}</h1>
+        <h2>Not Available</h2>
+      </Card>
+    ) : (
+      <Card className={props.className ? props.className : ""}>
         {/* <div
           style={{
             position: "absolute",
@@ -42,9 +46,8 @@ export default function PokemonCard(props) {
             backgroundPosition: "right",
           }}
           onClick={props.onClick}
-        >
-        </div>
+        ></div>
       </Card>
-    )
+    ))
   );
 }

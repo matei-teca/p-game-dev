@@ -12,14 +12,64 @@ export default function SearchBar(props) {
 
   //   return () => clearTimeout(timer)
   // }, [pokemon])
-  const handleClick = () => {
-    let pokemonName = document.querySelector("#search-bar--input").value;
-    if (props.pokemonColection?.includes(pokemonName)) {
-      setPokemon(pokemonName);
+  let pokemonName;
+  const handleSearchClick = () => {
+    pokemonName = document.querySelector("#search-bar--input");
+    if (props.pokemonColection?.includes(pokemonName.value)) {
+      setPokemon(pokemonName.value);
       setModalShow(true);
     } else {
       alert("Please insert a correct pokemon");
     }
+    pokemonName.value = ""
+  };
+
+  const handleModalClick = (e) => {
+    switch (e.target.innerText) {
+      case "Add":
+        document
+          .querySelector(`#${pokemon}`)
+          .parentElement.classList.add("cardSelected");
+        // document.querySelector(".active.carousel-item").classList.remove("active")
+        // document
+        //   .querySelector(`#${pokemon}`)
+        //   .parentElement.parentElement.parentElement.parentElement.classList.add(
+        //     "active"
+        //   );
+
+        // setTimeout(() => {
+        //   document
+        //     .querySelector(`#${pokemon}`)
+        //     .parentElement.parentElement.parentElement.parentElement.classList.remove(
+        //       "active"
+        //     );
+        // }, 2000);
+
+        setModalShow(false);
+        console.log(pokemon)
+        props.addToColection(pokemon);
+
+        break;
+
+      case "Remove":
+        document
+          .querySelector(`#${pokemon}`)
+          .parentElement.classList.remove("cardSelected");
+        setModalShow(false);
+        props.removeFromCollection(pokemon)
+        console.log(props.usersPokemons)
+        break;
+    }
+  };
+
+  const handlePokemonsSelectedClick = () => {
+    alert(
+      `${
+        props.usersPokemons.length > 0
+          ? `Your selected pokemons are: ${props.usersPokemons.join(", ")}`
+          : "No pokemons selected"
+      }`
+    );
   };
 
   return (
@@ -36,11 +86,14 @@ export default function SearchBar(props) {
           return <option value={pokemon}></option>;
         })}
       </datalist>
-      <button onClick={handleClick}>Search</button>
+      <button onClick={handleSearchClick}>Search</button>
+      <button onClick={handlePokemonsSelectedClick}>Pokemons Selected</button>
       <Modal
         show={modalShow}
         onHide={() => setModalShow(false)}
         name={pokemon}
+        handleModalClick={handleModalClick}
+        usersPokemons={props.usersPokemons}
       />
     </div>
   );

@@ -6,14 +6,14 @@ import "bootstrap/dist/css/bootstrap.css";
 import PokemonsColection from "./components/PokemonsColection";
 import StarterPage from "./components/StarterPage";
 import SearchBar from "./components/SearchBar";
-import PopupPokemon from "./components/PopupPokemon";
 
-let usersPokemons = [];
+
 let x = 0;
 function App() {
   const [locations, setLocations] = useState(null);
   const [pokemon, setPokemon] = useState(null);
   const [pokemonColection, setPokemonColection] = useState(null);
+  const [usersPokemons, setUsersPokemons] = useState([])
   useEffect(() => {
     let arr = [];
     let loadigbar = document.querySelector(".loadingBar");
@@ -68,12 +68,20 @@ function App() {
     if (usersPokemons.length < 3 && !usersPokemons.includes(e.target.id)) {
       usersPokemons.push(e.target.id);
       e.target.parentElement.classList.add("cardSelected");
-    } else if (usersPokemons.indexOf(e.target.id) != -1) {
+    } else if (usersPokemons.indexOf(e.target.id) !== -1) {
       e.target.parentElement.classList.remove("cardSelected");
       usersPokemons.splice(usersPokemons.indexOf(e.target.id), 1);
     }
-    console.log(usersPokemons);
   };
+
+  const addToColection = (newPokemon) => {
+    if (!usersPokemons.includes(newPokemon))
+      setUsersPokemons(() => [...usersPokemons, newPokemon]);
+  };
+
+  const removeFromCollection = (oldPokemon) => {
+    usersPokemons.splice(usersPokemons.indexOf(oldPokemon), 1)
+  }
 
   return (
     <div className="App">
@@ -86,10 +94,7 @@ function App() {
                 pokemon={pokemon}
                 onClick={handleBackClick}
                 usersPokemons={usersPokemons}
-                addToColection={(newPokemon) => {
-                  if (!usersPokemons.includes(newPokemon))
-                    usersPokemons = [...usersPokemons, newPokemon];
-                }}
+                addToColection={addToColection}
               />
             </div>
           ) : (
@@ -112,9 +117,12 @@ function App() {
             <button onClick={loadMap} className="go-to-map">
               Go to Map
             </button>
-
-            <SearchBar pokemonColection = {pokemonColection}/>
-            <PopupPokemon className="go-to-map"/>
+            <SearchBar
+              pokemonColection={pokemonColection}
+              addToColection={addToColection}
+              removeFromCollection={removeFromCollection}
+              usersPokemons={usersPokemons}
+            />
             <PokemonsColection
               pokemonColection={pokemonColection}
               onClick={handleSelectClick}

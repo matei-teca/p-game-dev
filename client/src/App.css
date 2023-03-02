@@ -6,6 +6,10 @@
   text-align: center;
 }
 
+.carousel-indicators{
+  margin-bottom: 5% !important;
+}
+
 progress {
   height: 60px;
   width: 300px;
@@ -100,7 +104,7 @@ h5 {
   ) !important;
   image-rendering: pixelated;
   padding-left: 2%;
-  height: 33%;
+  height: 33% !important;
   transition: 0.2s;
   border: 0px solid black !important;
   margin-top: 4%;
@@ -131,6 +135,7 @@ body {
 .card--container {
   /* background-color: blue; */
   margin-bottom: 4%;
+  margin-top: -10%;
   margin-inline: 0.5%;
   width: 23%;
   height: 75%;
