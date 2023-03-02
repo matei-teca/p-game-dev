@@ -24,13 +24,11 @@ export default function Pokemon(props) {
   const handleAttackClick = (e) => {
     switch (e.target.innerText) {
       case "Start Battle":
-        console.log(turn);
         handleTurn(turn, e);
         setTurn("enemy");
         e.target.innerText = "Next turn";
         break;
       case "Next turn":
-        console.log(turn);
         handleTurn(turn, e);
         break;
       case "Catch":

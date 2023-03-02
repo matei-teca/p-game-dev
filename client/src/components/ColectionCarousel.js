@@ -6,7 +6,7 @@ export default function ColectionCarousel(props) {
   return (
     <Carousel className="colection-slide">
       {props.colectionSlides.map((slide, index) => (
-        <Carousel.Item interval={10000} style={{ height: "700px" }}>
+        <Carousel.Item style={{ height: "700px" }}>
           <div className="users-pokemons" style={{ top: "3px" }}>
             {slide.map((pokemonName, index) => (
               <PokemonCard
