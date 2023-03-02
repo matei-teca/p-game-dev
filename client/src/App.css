@@ -6,6 +6,11 @@
   text-align: center;
 }
 
+.enemy-defeated{
+  position: absolute;
+  right: 0
+}
+
 .carousel-indicators{
   margin-bottom: 5% !important;
 } 

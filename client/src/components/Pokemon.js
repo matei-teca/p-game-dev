@@ -6,6 +6,7 @@ export default function Pokemon(props) {
   const [pokemonSelected, setPokemonSelected] = useState(null);
   const [usersPokemons, setUsersPokemons] = useState(props.usersPokemons);
   const [turn, setTurn] = useState("player");
+  const [enemyLost, setEnemyLost] = useState(false)
 
   const handleUsersPokemonClick = (e) => {
     setPokemonSelected(e.target.id);
@@ -26,9 +27,9 @@ export default function Pokemon(props) {
         handleTurn(turn, e);
         break;
       case "Catch":
+        alert("You catched it")
+        props.onClick()
         props.addToColection(props.pokemon.name);
-        if (!Object.keys(usersPokemons).includes(props.pokemon.name))
-          setUsersPokemons({ ...usersPokemons, [props.pokemon.name]: null });
         break;
     }
   };
@@ -61,7 +62,6 @@ export default function Pokemon(props) {
           document.querySelector(`#${pokemonSelected}`).parentElement.remove();
           props.removeFromCollection(pokemonSelected);
           delete usersPokemons[pokemonSelected];
-          setUsersPokemons(usersPokemons);
           setPokemonSelected(null);
         } else {
           usersPokemons[pokemonSelected] = HP_LEFT;
@@ -76,7 +76,10 @@ export default function Pokemon(props) {
         HP_LEFT = getStats("enemy", "player");
         document.querySelector(`#enemy>.pokemon-hp`).firstChild.innerText =
           HP_LEFT;
-        if (HP_LEFT === 0) e.target.innerText = "Catch";
+        if (HP_LEFT === 0) {
+          e.target.innerText = "Catch";
+          setEnemyLost(true)
+        }
         setTurn("enemy");
         break;
     }
@@ -94,6 +97,7 @@ export default function Pokemon(props) {
         name={props.pokemon.name}
         position={"right"}
         side={"front"}
+        enemyLost={enemyLost}
       />
 
       <div>
@@ -110,6 +114,10 @@ export default function Pokemon(props) {
               UsersPokemons={usersPokemons}
             />
           </>
+        ) : Object.keys(usersPokemons).length === 0 ? (
+          <div>
+            <h1>You Lost</h1>
+          </div>
         ) : (
           <h1 className="select-a-pokemon-text">Select a pokemon to fight!</h1>
         )}

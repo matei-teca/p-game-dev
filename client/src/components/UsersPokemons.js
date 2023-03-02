@@ -9,9 +9,12 @@ export default function UsersPokemons(props) {
       setPokemonDetails(data);
     })
     .catch((e) => {});
-    
+
   return (
-    pokemonDetails && (
+    pokemonDetails &&
+    (props.enemyLost ? (
+      <h1 className="enemy-defeated">Enemy defeated, you can catch it now!</h1>
+    ) : (
       <>
         <div
           id={props.id}
@@ -56,6 +59,6 @@ export default function UsersPokemons(props) {
           }}
         ></div>
       </>
-    )
+    ))
   );
 }

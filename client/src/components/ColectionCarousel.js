@@ -16,9 +16,8 @@ export default function ColectionCarousel(props) {
       return arr;
     });
   }, [props.usersPokemons]);
-  console.log(colectionSlides);
   return (
-    <Carousel className="colection-slide">
+    (<Carousel className="colection-slide">
       {colectionSlides &&
         colectionSlides.map((slide, index) => (
           <Carousel.Item key={index} style={{ height: "700px" }}>
@@ -35,6 +34,6 @@ export default function ColectionCarousel(props) {
             </div>
           </Carousel.Item>
         ))}
-    </Carousel>
+    </Carousel>)
   );
 }
