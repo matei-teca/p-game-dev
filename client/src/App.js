@@ -105,6 +105,16 @@ function App() {
               />
             </div>
           ) : (
+            <>
+            <div style={{position:"absolute"}}>
+            {/* <SearchBar
+              pokemonColection={pokemonColection}
+              addToColection={addToColection}
+              removeFromCollection={removeFromCollection}
+              usersPokemons={usersPokemons}
+              // loadMap={loadMap}
+            /> */}
+            </div>
             <div className="locations-app">
               <div className="locations--container">
                 {locations.results.map((location, index) => (
@@ -118,18 +128,20 @@ function App() {
                 ))}
               </div>
             </div>
+            </>
           )
         ) : (
           <>
-            <button onClick={loadMap} className="go-to-map">
-              Go to Map
-            </button>
+          <div className = "nav-bar--container">
+
             <SearchBar
               pokemonColection={pokemonColection}
               addToColection={addToColection}
               removeFromCollection={removeFromCollection}
               usersPokemons={usersPokemons}
+              loadMap={loadMap}
             />
+          </div>  
             <PokemonsColection
               pokemonColection={pokemonColection}
               onClick={handleSelectClick}

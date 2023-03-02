@@ -92,7 +92,8 @@ progress {
   padding-inline: 150px;
 }
 .main-carousel-div {
-  background-color: green;
+  background-color: green; 
+  /* outline-success */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -208,12 +209,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 30px;
+  /* padding: 30px; */
+  padding-top: 25px;
   text-align: center;
   cursor: pointer;
   box-shadow: 0 0 20px 0 yellow, 0 0 40px 0 yellow, 0 0 60px 0 yellow;
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
   font-size: small;
 }
 
@@ -242,6 +244,7 @@ body {
   top: 26vh;
   left: 68vw;
 }
+
 .location6 {
   top: 35vh;
   left: 59vw;
@@ -308,14 +311,43 @@ body {
 }
 
 .location19:hover {
-  top: 45vh;
-  left: 43.7vw;
+  top: 48vh;
+  left: 44.4vw;
 }
 
-#search-bar--input{
-  width: 20%;
-  margin-left: 40%;
-  margin-top: 10px;
-  padding: 10px;
+.nav-bar--container {
+  width: 100vw;
+  background-color: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.search-bar--container {
+  /* background-color: red; */
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  width: 60vw;
+  margin-right: 16vw;
+}
+
+.custom-modal-style{
+  width: 1000px;
+
+}
+
+/* .modal-body {
+    background-color:black;
+    height:380px;
+    width:500px;
+    border-radius:30px;
+} */
+
+.modal-body {
+  background-color:red;
+  height:380px;
+  width:500px;
+  border-radius:30px;
+  margin-left: -40%;
 }
