@@ -24,7 +24,7 @@ export default function MyVerticallyCenteredModal(props) {
         </div>
 
         <div style= {{width: "20%", marginLeft: "45%", marginTop: "-85%"}} >
-        <Button variant="outline-success" onClick={props.handleModalClick}>{props.usersPokemons.includes(props.name) ? "Remove" : "Add"} </Button>
+        <Button variant="outline-success" onClick={props.handleModalClick}>{Object.keys(props.usersPokemons).includes(props.name) ? "Remove" : "Add"} </Button>
         </div>
         {/* </div> */}
       </Modal.Body>
