@@ -5,7 +5,7 @@ export default function Locations(props) {
       onClick={props.onClick}
       className={`location--item-small ${props.locationID}`}
     >
-      <p>{props.name}</p>
+      <p style={{maxWidth: "100%"}}>{props.name.split("-").join(" ")}</p>
     </div>
   );
 }
