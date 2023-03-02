@@ -20,7 +20,7 @@ export default function UsersPokemons(props) {
           id={props.id}
           className={`pokemon_encounter-stats pokemon_encounter-stats-${props.position}`}
         >
-          <h2>{pokemonDetails.name.toUpperCase()}</h2>
+          <h2 className="pokemon-encountered-name">{pokemonDetails.name.toUpperCase()}</h2>
           <progress
             max={pokemonDetails.stats[0].base_stat}
             value={

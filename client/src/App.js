@@ -14,6 +14,7 @@ function App() {
   const [pokemon, setPokemon] = useState(null);
   const [pokemonColection, setPokemonColection] = useState(null);
   const [usersPokemons, setUsersPokemons] = useState({})
+  
   useEffect(() => {
     let arr = [];
     let loadigbar = document.querySelector(".loadingBar");
@@ -94,10 +95,9 @@ function App() {
         locations ? (
           pokemon ? (
             <div>
-              <button onClick={handleBackClick}>Back</button>
               <Pokemon
                 pokemon={pokemon}
-                onClick={handleBackClick}
+                handleOnClick={handleBackClick}
                 usersPokemons={usersPokemons}
                 addToColection={addToColection}
                 modifyUsersPokemons = {modifyUsersPokemons}
