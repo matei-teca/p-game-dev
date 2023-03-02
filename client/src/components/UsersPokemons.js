@@ -9,15 +9,18 @@ export default function UsersPokemons(props) {
       setPokemonDetails(data);
     })
     .catch((e) => {});
-    
+
   return (
-    pokemonDetails && (
+    pokemonDetails &&
+    (props.enemyLost ? (
+      <h1 className="enemy-defeated">Enemy defeated, you can catch it now!</h1>
+    ) : (
       <>
         <div
           id={props.id}
           className={`pokemon_encounter-stats pokemon_encounter-stats-${props.position}`}
         >
-          <h2>{pokemonDetails.name.toUpperCase()}</h2>
+          <h2 className="pokemon-encountered-name">{pokemonDetails.name.toUpperCase()}</h2>
           <progress
             max={pokemonDetails.stats[0].base_stat}
             value={
@@ -56,6 +59,6 @@ export default function UsersPokemons(props) {
           }}
         ></div>
       </>
-    )
+    ))
   );
 }

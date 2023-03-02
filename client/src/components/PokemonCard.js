@@ -16,8 +16,8 @@ export default function PokemonCard(props) {
     pokemonDetails &&
     (pokemonDetails === "error" ? (
       <Card className={"card-error"}>
-        <h1>{props.name.toUpperCase()}</h1>
-        <h2>Not Available</h2>
+        <h2>{props.name.toUpperCase()}</h2>
+        <h3>Not Available</h3>
       </Card>
     ) : (
       <Card className={props.className ? props.className : ""}>
