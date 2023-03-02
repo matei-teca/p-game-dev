@@ -91,7 +91,8 @@ progress {
   padding-inline: 150px;
 }
 .main-carousel-div {
-  background-color: green;
+  background-color: green; 
+  /* outline-success */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -330,4 +331,7 @@ body {
   margin-right: 16vw;
 }
 
+.custom-modal-style{
+  width: 1000px;
 
+}
