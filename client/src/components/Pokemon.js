@@ -1,16 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UsersPokemons from "./UsersPokemons";
 import ColectionCarousel from "./ColectionCarousel";
-
+let x = 0;
 export default function Pokemon(props) {
+  const [pokemonSelected, setPokemonSelected] = useState(null);
   const [usersPokemons, setUsersPokemons] = useState(props.usersPokemons);
   const [turn, setTurn] = useState("player");
-  const [pokemonSelected, setPokemonSelected] = useState(null);
-
-  let colectionSlides = [];
-  for (let i = 0; i < Object.keys(usersPokemons).length; i += 3) {
-    colectionSlides.push(Object.keys(usersPokemons).slice(i, i + 3));
-  }
 
   const handleUsersPokemonClick = (e) => {
     setPokemonSelected(e.target.id);
@@ -61,14 +56,19 @@ export default function Pokemon(props) {
         HP_LEFT = getStats("player", "enemy");
         document.querySelector(`#player>.pokemon-hp`).firstChild.innerText =
           HP_LEFT;
-        
+
         if (HP_LEFT === 0) {
+          document.querySelector(`#${pokemonSelected}`).parentElement.remove();
           props.removeFromCollection(pokemonSelected);
-          delete usersPokemons[pokemonSelected]
-          setPokemonSelected(null)
-          setUsersPokemons(usersPokemons)
-        }else {
+          delete usersPokemons[pokemonSelected];
+          setPokemonSelected(null);
+          setUsersPokemons(usersPokemons);
+        } else {
           setUsersPokemons({
+            ...usersPokemons,
+            [pokemonSelected]: HP_LEFT,
+          });
+          props.modifyUsersPokemons({
             ...usersPokemons,
             [pokemonSelected]: HP_LEFT,
           });
@@ -110,7 +110,7 @@ export default function Pokemon(props) {
               name={pokemonSelected}
               position={"left"}
               side={"back"}
-              usersPokemons={usersPokemons}
+              UsersPokemons={usersPokemons}
             />
           </>
         ) : (
@@ -118,10 +118,8 @@ export default function Pokemon(props) {
         )}
       </div>
       <ColectionCarousel
-        colectionSlides={colectionSlides}
         handleUsersPokemonClick={handleUsersPokemonClick}
         usersPokemons={usersPokemons}
-
       />
     </div>
   );

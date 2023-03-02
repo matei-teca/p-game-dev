@@ -59,6 +59,9 @@ function App() {
             );
       });
   };
+  const modifyUsersPokemons = (newUsersPokemons) => {
+    setUsersPokemons(newUsersPokemons)
+  } 
 
   const handleBackClick = () => {
     setPokemon(null);
@@ -81,7 +84,7 @@ function App() {
 
   const removeFromCollection = (oldPokemon) => {
     delete usersPokemons[oldPokemon]
-    console.log(usersPokemons)
+    // console.log(usersPokemons)
     setUsersPokemons(usersPokemons)
   }
 
@@ -97,6 +100,7 @@ function App() {
                 onClick={handleBackClick}
                 usersPokemons={usersPokemons}
                 addToColection={addToColection}
+                modifyUsersPokemons = {modifyUsersPokemons}
                 removeFromCollection={removeFromCollection}
               />
             </div>
