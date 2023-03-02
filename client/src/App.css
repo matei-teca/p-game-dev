@@ -196,6 +196,11 @@ body {
   transition: 1s;
 }
 
+.turn-title{
+  position:absolute;
+  left: 40%;
+}
+
 .locations--container {
   width: 90vw;
   height: 90vh;
@@ -242,9 +247,10 @@ body {
   text-align: center;
   cursor: pointer;
   box-shadow: 0 0 20px 0 yellow, 0 0 40px 0 yellow, 0 0 60px 0 yellow;
-  width: 75px;
-  height: 75px;
-  font-size: small;
+  width: 90px;
+  height: 85px;
+  font-size: medium;
+  font-weight: bolder;
 }
 
 .location0 {

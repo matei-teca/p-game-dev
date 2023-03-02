@@ -5,7 +5,7 @@ let x = 0;
 export default function Pokemon(props) {
   const [pokemonSelected, setPokemonSelected] = useState(null);
   const [usersPokemons, setUsersPokemons] = useState(props.usersPokemons);
-  const [turn, setTurn] = useState("player");
+  const [turn, setTurn] = useState("Player");
   const [enemyLost, setEnemyLost] = useState(false);
 
   const handleUsersPokemonClick = (e) => {
@@ -20,10 +20,10 @@ export default function Pokemon(props) {
     switch (e.target.innerText) {
       case "Start Battle":
         handleTurn(turn, e);
-        setTurn("enemy");
+        setTurn("Enemy");
         e.target.innerText = "Next turn";
         break;
-      case "Next turn":
+      case "Attack":
         handleTurn(turn, e);
         break;
       case "Catch":
@@ -53,9 +53,9 @@ export default function Pokemon(props) {
     let HP_LEFT;
 
     switch (turn) {
-      case "enemy":
-        HP_LEFT = getStats("player", "enemy");
-        document.querySelector(`#player>.pokemon-hp`).firstChild.innerText =
+      case "Enemy":
+        HP_LEFT = getStats("Player", "Enemy");
+        document.querySelector(`#Player>.pokemon-hp`).firstChild.innerText =
           HP_LEFT;
 
         if (HP_LEFT === 0) {
@@ -70,17 +70,17 @@ export default function Pokemon(props) {
             [pokemonSelected]: HP_LEFT,
           });
         }
-        setTurn("player");
+        setTurn("Player");
         break;
-      case "player":
-        HP_LEFT = getStats("enemy", "player");
-        document.querySelector(`#enemy>.pokemon-hp`).firstChild.innerText =
+      case "Player":
+        HP_LEFT = getStats("Enemy", "Player");
+        document.querySelector(`#Enemy>.pokemon-hp`).firstChild.innerText =
         HP_LEFT;
         if (HP_LEFT === 0) {
           e.target.innerText = "Catch";
           setEnemyLost(true);
         }
-        setTurn("enemy");
+        setTurn("Enemy");
         break;
     }
   };
@@ -93,7 +93,7 @@ export default function Pokemon(props) {
   ) : (
     <div className="pokemons-battleground">
       <UsersPokemons
-        id="enemy"
+        id="Enemy"
         name={props.pokemon.name}
         position={"right"}
         side={"front"}
@@ -103,11 +103,12 @@ export default function Pokemon(props) {
       <div>
         {pokemonSelected ? (
           <>
+          <h1 className="turn-title">{`${turn}'s turn`}</h1>
             <button id="start-battle" onClick={handleAttackClick}>
-              Start Battle
+              Attack
             </button>
             <UsersPokemons
-              id="player"
+              id="Player"
               name={pokemonSelected}
               position={"left"}
               side={"back"}
