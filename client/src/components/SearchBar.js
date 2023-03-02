@@ -30,23 +30,8 @@ export default function SearchBar(props) {
         document
           .querySelector(`#${pokemon}`)
           .parentElement.classList.add("cardSelected");
-        // document.querySelector(".active.carousel-item").classList.remove("active")
-        // document
-        //   .querySelector(`#${pokemon}`)
-        //   .parentElement.parentElement.parentElement.parentElement.classList.add(
-        //     "active"
-        //   );
-
-        // setTimeout(() => {
-        //   document
-        //     .querySelector(`#${pokemon}`)
-        //     .parentElement.parentElement.parentElement.parentElement.classList.remove(
-        //       "active"
-        //     );
-        // }, 2000);
 
         setModalShow(false);
-        console.log(pokemon)
         props.addToColection(pokemon);
 
         break;
@@ -57,7 +42,6 @@ export default function SearchBar(props) {
           .parentElement.classList.remove("cardSelected");
         setModalShow(false);
         props.removeFromCollection(pokemon)
-        console.log(props.usersPokemons)
         break;
     }
   };
@@ -82,9 +66,9 @@ export default function SearchBar(props) {
         // onChange={e => setPokemon(e.target.value)}
       />
       <datalist id="search-bar--datalist">
-        {props.pokemonColection?.map((pokemon, index) => {
-          return <option value={pokemon}></option>;
-        })}
+        {props.pokemonColection?.map((pokemon, index) => 
+         <option value={pokemon}></option>
+        )}
       </datalist>
       <button onClick={handleSearchClick}>Search</button>
       <button onClick={handlePokemonsSelectedClick}>Pokemons Selected</button>
