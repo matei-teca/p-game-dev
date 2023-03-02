@@ -22,7 +22,7 @@ export default function MyVerticallyCenteredModal(props) {
 
       <Modal.Footer style={{ display: "flex", justifyContent: "center" }}>
         
-          <Button onClick={props.handleModalClick}>{props.usersPokemons.includes(props.name) ? "Remove" : "Add"}</Button>
+          <Button onClick={props.handleModalClick}>{Object.keys(props.usersPokemons).includes(props.name) ? "Remove" : "Add"}</Button>
         
       </Modal.Footer>
     </Modal>

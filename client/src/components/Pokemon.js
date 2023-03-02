@@ -1,5 +1,4 @@
 import { useState } from "react";
-import PokemonCard from "./PokemonCard";
 import UsersPokemons from "./UsersPokemons";
 import ColectionCarousel from "./ColectionCarousel";
 
@@ -9,8 +8,8 @@ export default function Pokemon(props) {
   const [pokemonSelected, setPokemonSelected] = useState(null);
 
   let colectionSlides = [];
-  for (let i = 0; i < usersPokemons.length; i += 3) {
-    colectionSlides.push(usersPokemons.slice(i, i + 3));
+  for (let i = 0; i < Object.keys(usersPokemons).length; i += 3) {
+    colectionSlides.push(Object.keys(usersPokemons).slice(i, i + 3));
   }
 
   const handleUsersPokemonClick = (e) => {
@@ -33,8 +32,8 @@ export default function Pokemon(props) {
         break;
       case "Catch":
         props.addToColection(props.pokemon.name);
-        if (!usersPokemons.includes(props.pokemon.name))
-          setUsersPokemons([...usersPokemons, props.pokemon.name]);
+        if (!Object.keys(usersPokemons).includes(props.pokemon.name))
+          setUsersPokemons({ ...usersPokemons, [props.pokemon.name]: null });
         break;
     }
   };
@@ -51,7 +50,7 @@ export default function Pokemon(props) {
     DAMAGE =
       ((((2 / 5 + 2) * ATTACK * 60) / DEFENSE / 50 + 2) * CRITCHANCE) / 255;
     document.querySelector(`#${opponent}>progress`).value = HP - DAMAGE;
-    return HP - DAMAGE;
+    return Math.floor(HP - DAMAGE) > 0 ? Math.floor(HP - DAMAGE) : 0;
   };
 
   const handleTurn = (turn, e) => {
@@ -61,18 +60,26 @@ export default function Pokemon(props) {
       case "enemy":
         HP_LEFT = getStats("player", "enemy");
         document.querySelector(`#player>.pokemon-hp`).firstChild.innerText =
-          Math.floor(HP_LEFT) > 0 ? Math.floor(HP_LEFT) : 0;
+          HP_LEFT;
+        
+        if (HP_LEFT === 0) {
+          props.removeFromCollection(pokemonSelected);
+          delete usersPokemons[pokemonSelected]
+          setPokemonSelected(null)
+          setUsersPokemons(usersPokemons)
+        }else {
+          setUsersPokemons({
+            ...usersPokemons,
+            [pokemonSelected]: HP_LEFT,
+          });
+        }
         setTurn("player");
         break;
       case "player":
         HP_LEFT = getStats("enemy", "player");
         document.querySelector(`#enemy>.pokemon-hp`).firstChild.innerText =
-          Math.floor(HP_LEFT) > 0
-            ? Math.floor(HP_LEFT)
-            : (() => {
-                e.target.innerText = "Catch";
-                return 0;
-              })();
+          HP_LEFT;
+        if (HP_LEFT === 0) e.target.innerText = "Catch";
         setTurn("enemy");
         break;
     }
@@ -103,6 +110,7 @@ export default function Pokemon(props) {
               name={pokemonSelected}
               position={"left"}
               side={"back"}
+              usersPokemons={usersPokemons}
             />
           </>
         ) : (
@@ -112,6 +120,8 @@ export default function Pokemon(props) {
       <ColectionCarousel
         colectionSlides={colectionSlides}
         handleUsersPokemonClick={handleUsersPokemonClick}
+        usersPokemons={usersPokemons}
+
       />
     </div>
   );

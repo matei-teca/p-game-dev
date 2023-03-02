@@ -13,7 +13,7 @@ function App() {
   const [locations, setLocations] = useState(null);
   const [pokemon, setPokemon] = useState(null);
   const [pokemonColection, setPokemonColection] = useState(null);
-  const [usersPokemons, setUsersPokemons] = useState([])
+  const [usersPokemons, setUsersPokemons] = useState({})
   useEffect(() => {
     let arr = [];
     let loadigbar = document.querySelector(".loadingBar");
@@ -63,24 +63,26 @@ function App() {
   const handleBackClick = () => {
     setPokemon(null);
   };
-
+  
   const handleSelectClick = (e) => {
-    if (usersPokemons.length < 3 && !usersPokemons.includes(e.target.id)) {
-      usersPokemons.push(e.target.id);
+    if (Object.keys(usersPokemons).length < 3 && !Object.keys(usersPokemons).includes(e.target.id)) {
+      usersPokemons[e.target.id] = null;
       e.target.parentElement.classList.add("cardSelected");
-    } else if (usersPokemons.indexOf(e.target.id) !== -1) {
+    } else if (Object.keys(usersPokemons).indexOf(e.target.id) !== -1) {
       e.target.parentElement.classList.remove("cardSelected");
-      usersPokemons.splice(usersPokemons.indexOf(e.target.id), 1);
+      delete usersPokemons[e.target.id];
     }
   };
 
   const addToColection = (newPokemon) => {
-    if (!usersPokemons.includes(newPokemon))
-      setUsersPokemons(() => [...usersPokemons, newPokemon]);
+    if (!Object.keys(usersPokemons).includes(newPokemon))
+      setUsersPokemons({...usersPokemons, [newPokemon]:null});
   };
 
   const removeFromCollection = (oldPokemon) => {
-    usersPokemons.splice(usersPokemons.indexOf(oldPokemon), 1)
+    delete usersPokemons[oldPokemon]
+    console.log(usersPokemons)
+    setUsersPokemons(usersPokemons)
   }
 
   return (
@@ -95,6 +97,7 @@ function App() {
                 onClick={handleBackClick}
                 usersPokemons={usersPokemons}
                 addToColection={addToColection}
+                removeFromCollection={removeFromCollection}
               />
             </div>
           ) : (

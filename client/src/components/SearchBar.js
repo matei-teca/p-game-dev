@@ -49,8 +49,8 @@ export default function SearchBar(props) {
   const handlePokemonsSelectedClick = () => {
     alert(
       `${
-        props.usersPokemons.length > 0
-          ? `Your selected pokemons are: ${props.usersPokemons.join(", ")}`
+        Object.keys(props.usersPokemons).length > 0
+          ? `Your selected pokemons are: ${Object.keys(props.usersPokemons).join(", ")}`
           : "No pokemons selected"
       }`
     );

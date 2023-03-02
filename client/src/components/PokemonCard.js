@@ -30,7 +30,14 @@ export default function PokemonCard(props) {
           }}
         ></div> */}
         <h4>{pokemonDetails.name.toUpperCase()}</h4>
-        <h5>{pokemonDetails.stats[0].base_stat}HP</h5>
+        <h5>
+          {props.usersPokemons
+            ? props.usersPokemons[pokemonDetails.name] !== null
+              ? props.usersPokemons[pokemonDetails.name]
+              : pokemonDetails.stats[0].base_stat
+            : pokemonDetails.stats[0].base_stat}
+          HP
+        </h5>
         <h5>{pokemonDetails.stats[1].base_stat}Attack</h5>
         <h5>{pokemonDetails.stats[2].base_stat}Defense</h5>
         <div
