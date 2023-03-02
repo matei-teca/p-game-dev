@@ -9,6 +9,7 @@ export default function ColectionCarousel(props) {
   useEffect(() => {
     setColectionSlides(() => {
       let arr = [];
+
       for (let i = 0; i < Object.keys(props.usersPokemons).length; i += 3) {
         arr.push(Object.keys(props.usersPokemons).slice(i, i + 3));
       }

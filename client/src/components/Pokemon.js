@@ -61,13 +61,10 @@ export default function Pokemon(props) {
           document.querySelector(`#${pokemonSelected}`).parentElement.remove();
           props.removeFromCollection(pokemonSelected);
           delete usersPokemons[pokemonSelected];
-          setPokemonSelected(null);
           setUsersPokemons(usersPokemons);
+          setPokemonSelected(null);
         } else {
-          setUsersPokemons({
-            ...usersPokemons,
-            [pokemonSelected]: HP_LEFT,
-          });
+          usersPokemons[pokemonSelected] = HP_LEFT;
           props.modifyUsersPokemons({
             ...usersPokemons,
             [pokemonSelected]: HP_LEFT,
