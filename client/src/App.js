@@ -114,15 +114,16 @@ function App() {
           )
         ) : (
           <>
-            <button onClick={loadMap} className="go-to-map">
-              Go to Map
-            </button>
+          <div className = "nav-bar--container">
+
             <SearchBar
               pokemonColection={pokemonColection}
               addToColection={addToColection}
               removeFromCollection={removeFromCollection}
               usersPokemons={usersPokemons}
+              loadMap={loadMap}
             />
+          </div>  
             <PokemonsColection
               pokemonColection={pokemonColection}
               onClick={handleSelectClick}

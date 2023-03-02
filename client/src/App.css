@@ -313,10 +313,21 @@ body {
   left: 44.4vw;
 }
 
-#search-bar--input{
-  width: 20%;
-  margin-left: 40%;
-  margin-top: 10px;
-  padding: 10px;
-
+.nav-bar--container {
+  width: 100vw;
+  background-color: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.search-bar--container {
+  /* background-color: red; */
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  width: 60vw;
+  margin-right: 10vw;
+}
+
+
