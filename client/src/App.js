@@ -6,6 +6,9 @@ import "bootstrap/dist/css/bootstrap.css";
 import PokemonsColection from "./components/PokemonsColection";
 import StarterPage from "./components/StarterPage";
 import SearchBar from "./components/SearchBar";
+import state from "./components/test";
+import { useAtom } from 'jotai'
+
 
 
 let x = 0;
@@ -14,6 +17,7 @@ function App() {
   const [pokemon, setPokemon] = useState(null);
   const [pokemonColection, setPokemonColection] = useState(null);
   const [usersPokemons, setUsersPokemons] = useState({})
+  // const [level, setLevel] = useAtom(state.level)
   
   useEffect(() => {
     let arr = [];
@@ -89,6 +93,10 @@ function App() {
     setUsersPokemons(usersPokemons)
   }
 
+  // const handleLevel = (level, exp, maxExp) => {
+  //   setLevel({level: level, exp: exp, maxExp: maxExp})
+  // }
+
   return (
     <div className="App">
       {pokemonColection ? (
@@ -102,6 +110,8 @@ function App() {
                 addToColection={addToColection}
                 modifyUsersPokemons = {modifyUsersPokemons}
                 removeFromCollection={removeFromCollection}
+                // handleLevel={handleLevel}
+                // level={level}
               />
             </div>
           ) : (

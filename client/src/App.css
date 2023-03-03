@@ -384,3 +384,23 @@ body {
   border-radius: 30px;
   margin-left: -40%;
 }
+
+
+.level{
+  height: 10%;
+  font-size: 25px;
+  color: white
+}
+
+.player-won{
+  width: 100vw;
+  height: 100vh;
+}
+
+.won{
+  color:black !important
+}
+
+.modal-body{
+  overflow-x: auto;
+}

@@ -1,12 +1,21 @@
 import { useEffect, useState } from "react";
 import UsersPokemons from "./UsersPokemons";
 import ColectionCarousel from "./ColectionCarousel";
+import Level from "./Level";
+import Potions from "./Potions";
+import state from "./test";
+import { useAtom } from 'jotai'
+
+
+
 let x = 0;
 export default function Pokemon(props) {
   const [pokemonSelected, setPokemonSelected] = useState(null);
   const [usersPokemons, setUsersPokemons] = useState(props.usersPokemons);
   const [turn, setTurn] = useState("Player");
   const [enemyLost, setEnemyLost] = useState(false);
+  const [ifPlayerWon, setIfPlayerWon] = useState(false);
+  const [level, setLevel] = useAtom(state.level)
 
   const handleUsersPokemonClick = (e) => {
     setPokemonSelected(e.target.id);
@@ -75,14 +84,40 @@ export default function Pokemon(props) {
       case "Player":
         HP_LEFT = getStats("Enemy", "Player");
         document.querySelector(`#Enemy>.pokemon-hp`).firstChild.innerText =
-        HP_LEFT;
+          HP_LEFT;
         if (HP_LEFT === 0) {
           e.target.innerText = "Catch";
+          // props.handleLevel(
+          //   props.level.level,
+          //   props.level.exp + getExperience(),
+          //   props.level.maxExp
+          // );
+
+          setLevel({...level,
+            exp: level.exp + getExperience()})
           setEnemyLost(true);
         }
         setTurn("Enemy");
         break;
     }
+  };
+
+  const getExperience = () => {
+    const getStat = (stat) => {
+      return (
+        document.querySelector(`#Enemy>.pokemon-${stat}`).firstChild
+          .textContent * 1
+      );
+    };
+    const attack = getStat("attack");
+    const hp = document.querySelector("#Enemy>progress").max * 1;
+    const defense = getStat("defense");
+
+    return Math.floor(((attack + hp + defense) / 3) * 3);
+  };
+
+  const handlePlayerWon = (state) => {
+    setIfPlayerWon(state);
   };
 
   return props.pokemon === "No pokemons found" ? (
@@ -92,53 +127,63 @@ export default function Pokemon(props) {
     </div>
   ) : (
     <div className="pokemons-battleground">
-      <UsersPokemons
-        id="Enemy"
-        name={props.pokemon.name}
-        position={"right"}
-        side={"front"}
-        enemyLost={enemyLost}
-      />
+        <Level
+          // level={props.level}
+          // handleLevel={props.handleLevel}
+          handlePlayerWon={handlePlayerWon}
+        />
+      <div className="Test">
+        <Potions userPokemons={usersPokemons} modifyUsersPokemons={props.modifyUsersPokemons}/>
+        <UsersPokemons
+          id="Enemy"
+          name={props.pokemon.name}
+          position={"right"}
+          side={"front"}
+          enemyLost={enemyLost}
+        />
 
-      <div>
-        {pokemonSelected ? (
-          <>
-          <h1 className="turn-title">{`${turn}'s turn`}</h1>
-            <button id="start-battle" onClick={handleAttackClick}>
-              Attack
-            </button>
-            <UsersPokemons
-              id="Player"
-              name={pokemonSelected}
-              position={"left"}
-              side={"back"}
-              UsersPokemons={usersPokemons}
-            />
-          </>
-        ) : Object.keys(usersPokemons).length === 0 ? (
-          <div>
-            <h1>You Lost</h1>
-            <button
-              onClick={() => {
-                window.location.reload();
-              }}
-            >
-              Reset
-            </button>
-          </div>
-        ) : (
-          <div>
-            <button onClick={props.handleOnClick}>Back</button>
-            <h1 className="select-a-pokemon-text">
-              Select a pokemon to fight!
-            </h1>
-          </div>
-        )}
+        <div>
+          {pokemonSelected ? (
+            <>
+              <h1 className="turn-title">
+                {enemyLost ? "" : `${turn}'s turn`}
+              </h1>
+              <button id="start-battle" onClick={handleAttackClick}>
+                Attack
+              </button>
+              <UsersPokemons
+                id="Player"
+                name={pokemonSelected}
+                position={"left"}
+                side={"back"}
+                UsersPokemons={usersPokemons}
+              />
+            </>
+          ) : Object.keys(usersPokemons).length === 0 ? (
+            <div>
+              <h1>You Lost</h1>
+              <button
+                onClick={() => {
+                  window.location.reload();
+                }}
+              >
+                Reset
+              </button>
+            </div>
+          ) : (
+            <div>
+              <button onClick={props.handleOnClick}>Back</button>
+              <h1 className="select-a-pokemon-text">
+                Select a pokemon to fight!
+              </h1>
+            </div>
+          )}
+        </div>
+        <ColectionCarousel
+          handleUsersPokemonClick={handleUsersPokemonClick}
+          usersPokemons={usersPokemons}
+        />
       </div>
-      <ColectionCarousel
-        handleUsersPokemonClick={handleUsersPokemonClick}
-        usersPokemons={usersPokemons}
-      />
     </div>
   );
 }

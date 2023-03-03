@@ -21,14 +21,6 @@ export default function PokemonCard(props) {
       </Card>
     ) : (
       <Card className={props.className ? props.className : ""}>
-        {/* <div
-          style={{
-            position: "absolute",
-            width: "100%",
-            height: "100%",
-            opacity: 0,
-          }}
-        ></div> */}
         <h4>{pokemonDetails.name.toUpperCase()}</h4>
         <h5>
           {props.usersPokemons
