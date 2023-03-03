@@ -16,8 +16,7 @@ function App() {
   const [locations, setLocations] = useState(null);
   const [pokemon, setPokemon] = useState(null);
   const [pokemonColection, setPokemonColection] = useState(null);
-  const [usersPokemons, setUsersPokemons] = useState({})
-  // const [level, setLevel] = useAtom(state.level)
+  const [userPokemons, setUserPokemons] = useAtom(state.userPokemons)
   
   useEffect(() => {
     let arr = [];
@@ -73,12 +72,13 @@ function App() {
   };
   
   const handleSelectClick = (e) => {
-    if (Object.keys(usersPokemons).length < 3 && !Object.keys(usersPokemons).includes(e.target.id)) {
-      usersPokemons[e.target.id] = null;
+    if (Object.keys(userPokemons).length < 3 && !Object.keys(userPokemons).includes(e.target.id)) {
+      setUserPokemons({...userPokemons, [e.target.id]:null})
       e.target.parentElement.classList.add("cardSelected");
-    } else if (Object.keys(usersPokemons).indexOf(e.target.id) !== -1) {
+    } else if (Object.keys(userPokemons).indexOf(e.target.id) !== -1) {
       e.target.parentElement.classList.remove("cardSelected");
-      delete usersPokemons[e.target.id];
+      delete userPokemons[e.target.id];
+      setUserPokemons({...userPokemons, })
     }
   };
 
@@ -89,13 +89,8 @@ function App() {
 
   const removeFromCollection = (oldPokemon) => {
     delete usersPokemons[oldPokemon]
-    // console.log(usersPokemons)
     setUsersPokemons(usersPokemons)
   }
-
-  // const handleLevel = (level, exp, maxExp) => {
-  //   setLevel({level: level, exp: exp, maxExp: maxExp})
-  // }
 
   return (
     <div className="App">

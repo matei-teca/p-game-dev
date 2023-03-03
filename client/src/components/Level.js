@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import state from "./test";
-import { useAtom, useAtomValue, useSetAtom  } from "jotai";
+import { useAtom } from "jotai";
 
 export default function Level(props) {
   const [ifPlayerWon, setIfPlayerWon] = useState(false);
@@ -8,11 +8,6 @@ export default function Level(props) {
 
   const calculateMaxExperience = () => {
     if (level.exp >= level.maxExp) {
-      // props.handleLevel(
-      //   props.level.level + 1,
-      //   props.level.exp % props.level.maxExp,
-      //   props.level.maxExp + props.level.maxExp / 2
-      // );
       setLevel({
         level: level.level + 1,
         exp: level.exp % level.maxExp,

@@ -87,12 +87,6 @@ export default function Pokemon(props) {
           HP_LEFT;
         if (HP_LEFT === 0) {
           e.target.innerText = "Catch";
-          // props.handleLevel(
-          //   props.level.level,
-          //   props.level.exp + getExperience(),
-          //   props.level.maxExp
-          // );
-
           setLevel({...level,
             exp: level.exp + getExperience()})
           setEnemyLost(true);

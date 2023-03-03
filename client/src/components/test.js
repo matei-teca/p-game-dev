@@ -5,7 +5,8 @@ const state = {
         level: 1,
         exp: 0,
         maxExp: 300
-    })
+    }),
+    userPokemons: atom({})
 }
 
 export default state
