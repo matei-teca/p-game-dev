@@ -1,12 +1,12 @@
 import "bootstrap/dist/css/bootstrap.css";
 import PokemonCard from "./PokemonCard";
 
-export default function CarouselColumn(props) {
+export default function CarouselColumn({handleSelectClick, column}) {
   return (
     <div className="d-inline card--container">
-      {props.column.map((pokemonName, index) => (
+      {column.map((pokemonName, index) => (
         <>
-          <PokemonCard name={pokemonName} key={index} onClick={props.onClick} />
+          <PokemonCard name={pokemonName} key={index} handleSelectClick={handleSelectClick}/>
         </>
       ))}
     </div>

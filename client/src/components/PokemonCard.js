@@ -1,11 +1,15 @@
 import "bootstrap/dist/css/bootstrap.css";
 import { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
+import state from "./test";
+import { useAtom } from "jotai";
 
-export default function PokemonCard(props) {
+export default function PokemonCard({ handleSelectClick, name, className }) {
   const [pokemonDetails, setPokemonDetails] = useState(null);
+  const [userPokemons, setUserPokemons] = useAtom(state.userPokemons);
+
   useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${props.name}`)
+    fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
       .then((res) => res.json())
       .then((data) => {
         setPokemonDetails(data);
@@ -16,17 +20,15 @@ export default function PokemonCard(props) {
     pokemonDetails &&
     (pokemonDetails === "error" ? (
       <Card className={"card-error"}>
-        <h2>{props.name.toUpperCase()}</h2>
+        <h2>{name.toUpperCase()}</h2>
         <h3>Not Available</h3>
       </Card>
     ) : (
-      <Card className={props.className ? props.className : ""}>
+      <Card className={className ? className : ""}>
         <h4>{pokemonDetails.name.toUpperCase()}</h4>
         <h5>
-          {props.usersPokemons
-            ? props.usersPokemons[pokemonDetails.name] !== null
-              ? props.usersPokemons[pokemonDetails.name]
-              : pokemonDetails.stats[0].base_stat
+          {userPokemons[pokemonDetails.name]
+            ? userPokemons[pokemonDetails.name]
             : pokemonDetails.stats[0].base_stat}
           HP
         </h5>
@@ -44,7 +46,7 @@ export default function PokemonCard(props) {
             backgroundRepeat: " no-repeat",
             backgroundPosition: "right",
           }}
-          onClick={props.onClick}
+          onClick={handleSelectClick}
         ></div>
       </Card>
     ))

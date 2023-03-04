@@ -3,18 +3,16 @@ import Button from "react-bootstrap/Button";
 import PokemonCard from "./PokemonCard";
 import "../App.css";
 
-import { useEffect, useState } from "react";
+import { useAtom } from "jotai";
+import state from "./test";
 
-export default function MyVerticallyCenteredModal(props) {
-  const [userPokemons, setUsersPokemons] = useState(props.userPokemons)
+export default function MyVerticallyCenteredModal({show, onHide, handleModalClick, name, potionsShow}) {
+  const [userPokemons, setUserPokemon] = useAtom(state.userPokemons)
 
-  useEffect(() => {
-    setUsersPokemons(props.userPokemons)
-  },[props.userPokemons])
 
-  return userPokemons && (props.potionsShow ? (
-    <Modal show={props.show}
-    onHide={props.onHide}
+  return userPokemons && (potionsShow ? (
+    <Modal show={show}  
+    onHide={onHide}
     aria-labelledby="contained-modal-title-vcenter"
     centered
     size="sm">
@@ -30,14 +28,12 @@ export default function MyVerticallyCenteredModal(props) {
 
             {Object.keys(userPokemons).map((pokemonName, index) => (
               <>
-              <PokemonCard name={pokemonName}  key={index} usersPokemons={userPokemons}/>
-            <Button variant="outline-success" onClick={props.handleModalClick}>
+              <PokemonCard name={pokemonName}  key={index} />
+            <Button variant="outline-success" onClick={handleModalClick}>
               Heal
             </Button>
               </>
             ))}
-          {/* <div style={{ width: "20%", marginLeft: "45%", marginTop: "-85%" }}> */}
-          {/* </div> */}
           </div>
         </Modal.Body>
 
@@ -45,8 +41,8 @@ export default function MyVerticallyCenteredModal(props) {
   ) : 
   (
     <Modal
-      show={props.show}
-      onHide={props.onHide}
+      show={show}
+      onHide={onHide}
       aria-labelledby="contained-modal-title-vcenter"
       centered
       size="sm"
@@ -60,14 +56,14 @@ export default function MyVerticallyCenteredModal(props) {
               paddingTop: "5%",
             }}
           >
-            <PokemonCard name={props.name} key={1} onClick={() => {}} />
+            <PokemonCard name={name} key={1} onClick={() => {}} />
           </div>
 
           <div style={{ width: "20%", marginLeft: "45%", marginTop: "-85%" }}>
-            <Button variant="outline-success" onClick={props.handleModalClick}>
-              {Object.keys(props.usersPokemons).includes(props.name)
+            <Button variant="outline-success" onClick={handleModalClick}>
+              {Object.keys(userPokemons).includes(name)
                 ? "Remove"
-                : "Add"}{" "}
+                : "Add"}
             </Button>
           </div>
         </Modal.Body>

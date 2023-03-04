@@ -1,44 +1,31 @@
 import { useEffect, useState } from "react";
-import UsersPokemons from "./UsersPokemons";
+import PokemonEncounter from "./PokemonEncounter";
 import ColectionCarousel from "./ColectionCarousel";
 import Level from "./Level";
 import Potions from "./Potions";
 import state from "./test";
-import { useAtom } from 'jotai'
-
-
+import { useAtom } from "jotai";
 
 let x = 0;
 export default function Pokemon(props) {
-  const [pokemonSelected, setPokemonSelected] = useState(null);
-  const [usersPokemons, setUsersPokemons] = useState(props.usersPokemons);
   const [turn, setTurn] = useState("Player");
-  const [enemyLost, setEnemyLost] = useState(false);
-  const [ifPlayerWon, setIfPlayerWon] = useState(false);
-  const [level, setLevel] = useAtom(state.level)
+  const [ifEnemyLost, setIfEnemyLost] = useAtom(state.ifEnemyLost);
+  const [pokemonSelected, setPokemonSelected] = useAtom(state.pokemonSelected);
+  const [userPokemons, setUserPokemons] = useAtom(state.userPokemons);
+  const [level, setLevel] = useAtom(state.level);
+  const [enemyPokemon, setEnemyPokemon] = useAtom(state.enemyPokemon);
 
-  const handleUsersPokemonClick = (e) => {
-    setPokemonSelected(e.target.id);
-    document.querySelectorAll(".users-pokemons-card").forEach((element) => {
-      element.classList.remove("cardSelected");
-    });
-    e.target.parentElement.classList.add("cardSelected");
-  };
+
 
   const handleAttackClick = (e) => {
     switch (e.target.innerText) {
-      case "Start Battle":
-        handleTurn(turn, e);
-        setTurn("Enemy");
-        e.target.innerText = "Next turn";
-        break;
       case "Attack":
         handleTurn(turn, e);
         break;
       case "Catch":
         alert("You catched it");
-        props.handleOnClick();
-        props.addToColection(props.pokemon.name);
+        setEnemyPokemon(null);
+        setUserPokemons({ ...userPokemons, [enemyPokemon.name]: null });
         break;
     }
   };
@@ -69,15 +56,16 @@ export default function Pokemon(props) {
 
         if (HP_LEFT === 0) {
           document.querySelector(`#${pokemonSelected}`).parentElement.remove();
-          props.removeFromCollection(pokemonSelected);
-          delete usersPokemons[pokemonSelected];
+          setUserPokemons(
+            Object.fromEntries(
+              Object.entries(userPokemons).filter(
+                ([key]) => key !== e.target.id
+              )
+            )
+          );
           setPokemonSelected(null);
         } else {
-          usersPokemons[pokemonSelected] = HP_LEFT;
-          props.modifyUsersPokemons({
-            ...usersPokemons,
-            [pokemonSelected]: HP_LEFT,
-          });
+          setUserPokemons({ ...userPokemons, [pokemonSelected]: HP_LEFT });
         }
         setTurn("Player");
         break;
@@ -87,9 +75,8 @@ export default function Pokemon(props) {
           HP_LEFT;
         if (HP_LEFT === 0) {
           e.target.innerText = "Catch";
-          setLevel({...level,
-            exp: level.exp + getExperience()})
-          setEnemyLost(true);
+          setLevel({ ...level, exp: level.exp + getExperience() });
+          setIfEnemyLost(true);
         }
         setTurn("Enemy");
         break;
@@ -110,50 +97,41 @@ export default function Pokemon(props) {
     return Math.floor(((attack + hp + defense) / 3) * 3);
   };
 
-  const handlePlayerWon = (state) => {
-    setIfPlayerWon(state);
-  };
-
   return props.pokemon === "No pokemons found" ? (
     <div>
       <h1>This location doesn't seem to have any pokémon</h1>
-      <button onClick={props.onClick}>Back</button>
+      <button onClick={() => setEnemyPokemon(null)}>Back</button>
     </div>
   ) : (
     <div className="pokemons-battleground">
-        <Level
-          // level={props.level}
-          // handleLevel={props.handleLevel}
-          handlePlayerWon={handlePlayerWon}
-        />
+      <Level />
       <div className="Test">
-        <Potions userPokemons={usersPokemons} modifyUsersPokemons={props.modifyUsersPokemons}/>
-        <UsersPokemons
+        <Potions />
+        <PokemonEncounter
           id="Enemy"
-          name={props.pokemon.name}
+          name={enemyPokemon.name}
           position={"right"}
           side={"front"}
-          enemyLost={enemyLost}
+          enemyLost={ifEnemyLost}
         />
 
         <div>
           {pokemonSelected ? (
             <>
               <h1 className="turn-title">
-                {enemyLost ? "" : `${turn}'s turn`}
+                {ifEnemyLost ? "" : `${turn}'s turn`}
               </h1>
               <button id="start-battle" onClick={handleAttackClick}>
                 Attack
               </button>
-              <UsersPokemons
+              <PokemonEncounter
                 id="Player"
                 name={pokemonSelected}
                 position={"left"}
                 side={"back"}
-                UsersPokemons={usersPokemons}
               />
             </>
-          ) : Object.keys(usersPokemons).length === 0 ? (
+          ) : Object.keys(userPokemons).length === 0 ? (
             <div>
               <h1>You Lost</h1>
               <button
@@ -173,10 +151,7 @@ export default function Pokemon(props) {
             </div>
           )}
         </div>
-        <ColectionCarousel
-          handleUsersPokemonClick={handleUsersPokemonClick}
-          usersPokemons={usersPokemons}
-        />
+        <ColectionCarousel />
       </div>
     </div>
   );

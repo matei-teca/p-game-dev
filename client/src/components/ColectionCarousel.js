@@ -3,19 +3,32 @@ import Carousel from "react-bootstrap/Carousel";
 import React, { useEffect } from "react";
 import PokemonCard from "./PokemonCard";
 import { useState } from "react";
-export default function ColectionCarousel(props) {
+import { useAtom } from "jotai";
+import state from "./test";
+export default function ColectionCarousel() {
   const [colectionSlides, setColectionSlides] = useState(null);
+  const [pokemonSelected, setPokemonSelected] = useAtom(state.pokemonSelected)
+  const [userPokemons] = useAtom(state.userPokemons)
 
   useEffect(() => {
     setColectionSlides(() => {
       let arr = [];
 
-      for (let i = 0; i < Object.keys(props.usersPokemons).length; i += 3) {
-        arr.push(Object.keys(props.usersPokemons).slice(i, i + 3));
+      for (let i = 0; i < Object.keys(userPokemons).length; i += 3) {
+        arr.push(Object.keys(userPokemons).slice(i, i + 3));
       }
       return arr;
     });
-  }, [props.usersPokemons]);
+  }, [userPokemons]);
+
+  const handleUsersPokemonClick = (e) => {
+    setPokemonSelected(e.target.id);
+    document.querySelectorAll(".users-pokemons-card").forEach((element) => {
+      element.classList.remove("cardSelected");
+    });
+    e.target.parentElement.classList.add("cardSelected");
+  };
+  
   return (
     (<Carousel className="colection-slide">
       {colectionSlides &&
@@ -27,8 +40,7 @@ export default function ColectionCarousel(props) {
                   key={index}
                   name={pokemonName}
                   className="users-pokemons-card"
-                  onClick={props.handleUsersPokemonClick}
-                  usersPokemons={props.usersPokemons}
+                  handleSelectClick={handleUsersPokemonClick}
                 />
               ))}
             </div>

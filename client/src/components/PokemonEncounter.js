@@ -1,9 +1,13 @@
 import { useState } from "react";
+import state from "./test";
+import { useAtom } from "jotai";
 
-export default function UsersPokemons(props) {
+export default function PokemonEncounter({ id, name, position, side }) {
   const [pokemonDetails, setPokemonDetails] = useState(null);
+  const [userPokemons] = useAtom(state.userPokemons);
+  const [ifEnemyLost] = useAtom(state.ifEnemyLost);
 
-  fetch(`https://pokeapi.co/api/v2/pokemon/${props.name}`)
+  fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
     .then((res) => res.json())
     .then((data) => {
       setPokemonDetails(data);
@@ -12,31 +16,29 @@ export default function UsersPokemons(props) {
 
   return (
     pokemonDetails &&
-    (props.enemyLost ? (
+    (ifEnemyLost ? (
       <h1 className="enemy-defeated">Enemy defeated, you can catch it now!</h1>
     ) : (
       <>
         <div
-          id={props.id}
-          className={`pokemon_encounter-stats pokemon_encounter-stats-${props.position}`}
+          id={id}
+          className={`pokemon_encounter-stats pokemon_encounter-stats-${position}`}
         >
-          <h2 className="pokemon-encountered-name">{pokemonDetails.name.toUpperCase()}</h2>
+          <h2 className="pokemon-encountered-name">
+            {pokemonDetails.name.toUpperCase()}
+          </h2>
           <progress
             max={pokemonDetails.stats[0].base_stat}
             value={
-              props.UsersPokemons
-                ? props.UsersPokemons[pokemonDetails.name] !== null
-                  ? props.UsersPokemons[pokemonDetails.name]
-                  : pokemonDetails.stats[0].base_stat
+              userPokemons[pokemonDetails.name]
+                ? userPokemons[pokemonDetails.name]
                 : pokemonDetails.stats[0].base_stat
             }
           />
           <div className="pokemon-hp">
             <strong>
-              {props.UsersPokemons
-                ? props.UsersPokemons[pokemonDetails.name] !== null
-                  ? props.UsersPokemons[pokemonDetails.name]
-                  : pokemonDetails.stats[0].base_stat
+              {userPokemons[pokemonDetails.name]
+                ? userPokemons[pokemonDetails.name]
                 : pokemonDetails.stats[0].base_stat}
             </strong>
           </div>
@@ -48,11 +50,11 @@ export default function UsersPokemons(props) {
           </h3>
         </div>
         <div
-          className={`pokemon_encounter-stats pokemon_encounter-stats-${props.position}`}
+          className={`pokemon_encounter-stats pokemon_encounter-stats-${position}`}
           style={{
             backgroundImage: `url(${
-              pokemonDetails.sprites[`${props.side}_default`]
-                ? pokemonDetails.sprites[`${props.side}_default`]
+              pokemonDetails.sprites[`${side}_default`]
+                ? pokemonDetails.sprites[`${side}_default`]
                 : pokemonDetails.sprites.front_default
             })`,
             position: "absolute",
