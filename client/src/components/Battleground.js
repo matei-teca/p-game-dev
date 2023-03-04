@@ -1,13 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PokemonEncounter from "./PokemonEncounter";
-import ColectionCarousel from "./ColectionCarousel";
+import CollectionCarousel from "./CollectionCarousel";
 import Level from "./Level";
 import Potions from "./Potions";
 import state from "./test";
 import { useAtom } from "jotai";
 
-let x = 0;
-export default function Pokemon(props) {
+export default function Battleground() {
   const [turn, setTurn] = useState("Player");
   const [ifEnemyLost, setIfEnemyLost] = useAtom(state.ifEnemyLost);
   const [pokemonSelected, setPokemonSelected] = useAtom(state.pokemonSelected);
@@ -55,11 +54,11 @@ export default function Pokemon(props) {
           HP_LEFT;
 
         if (HP_LEFT === 0) {
-          document.querySelector(`#${pokemonSelected}`).parentElement.remove();
+          // document.querySelector(`#${pokemonSelected}`).parentElement.parentElement.parentElement.remove()
           setUserPokemons(
             Object.fromEntries(
               Object.entries(userPokemons).filter(
-                ([key]) => key !== e.target.id
+                ([key]) => key !== pokemonSelected
               )
             )
           );
@@ -73,8 +72,8 @@ export default function Pokemon(props) {
         HP_LEFT = getStats("Enemy", "Player");
         document.querySelector(`#Enemy>.pokemon-hp`).firstChild.innerText =
           HP_LEFT;
-        if (HP_LEFT === 0) {
-          e.target.innerText = "Catch";
+          if (HP_LEFT === 0) {
+            e.target.innerText = "Catch";
           setLevel({ ...level, exp: level.exp + getExperience() });
           setIfEnemyLost(true);
         }
@@ -82,12 +81,12 @@ export default function Pokemon(props) {
         break;
     }
   };
-
+  
   const getExperience = () => {
     const getStat = (stat) => {
       return (
         document.querySelector(`#Enemy>.pokemon-${stat}`).firstChild
-          .textContent * 1
+        .textContent * 1
       );
     };
     const attack = getStat("attack");
@@ -96,11 +95,12 @@ export default function Pokemon(props) {
 
     return Math.floor(((attack + hp + defense) / 3) * 3);
   };
-
-  return props.pokemon === "No pokemons found" ? (
+  
+  return enemyPokemon === "No pokemons found" ? (
     <div>
       <h1>This location doesn't seem to have any pokémon</h1>
       <button onClick={() => setEnemyPokemon(null)}>Back</button>
+      <>{console.log(userPokemons)}</>
     </div>
   ) : (
     <div className="pokemons-battleground">
@@ -144,14 +144,14 @@ export default function Pokemon(props) {
             </div>
           ) : (
             <div>
-              <button onClick={props.handleOnClick}>Back</button>
+              <button onClick={()=> setEnemyPokemon(null)}>Back</button>
               <h1 className="select-a-pokemon-text">
                 Select a pokemon to fight!
               </h1>
             </div>
           )}
         </div>
-        <ColectionCarousel />
+        <CollectionCarousel />
       </div>
     </div>
   );

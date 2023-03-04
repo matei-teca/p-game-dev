@@ -8,6 +8,7 @@ const state = {
         exp: 0,
         maxExp: 300
     }),
+    collectionSlides: atom([]),
     pokemonCollection: atom(null),
     userPokemons: atom({}),
     enemyPokemon: atom(null),
